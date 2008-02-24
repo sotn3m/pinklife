@@ -15,10 +15,10 @@
                         </Component>
                     </Component>
                     <Component componentID="4" typeID="C#MobileDeviceResumeEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R18"/>
-                        <Component componentID="18" typeID="C#SwitchDisplayableEventHandler">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R66"/>
+                        <Component componentID="66" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R4"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R52"/>
                         </Component>
                     </Component>
                 </Component>

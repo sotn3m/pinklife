@@ -84,7 +84,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void resumeMIDlet() {//GEN-END:|4-resumeMIDlet|0|4-preAction
         // write pre-action user code here
-        switchDisplayable(null, getGameCanvas());//GEN-LINE:|4-resumeMIDlet|1|4-postAction
+        load();//GEN-LINE:|4-resumeMIDlet|1|4-postAction
         // write post-action user code here
     }//GEN-BEGIN:|4-resumeMIDlet|2|
     //</editor-fold>//GEN-END:|4-resumeMIDlet|2|
