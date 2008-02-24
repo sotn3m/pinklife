@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package data;
 
 /**
@@ -11,58 +6,80 @@ package data;
  */
 public class CreatureBean {
     private String sName;    
-    private int iHappiness;
-    private int iFoodLevel;
-    private int iWaterLevel;
-    private int iDirtyLevel;
-    private int iPlayLevel;
+    private int happiness;
+    private int foodLevel;
+    private int waterLevel;
+    private int dirtyLevel;
+    private int playLevel;
+    
+    public void debug() {
+        System.out.println(getName());
+        System.out.println("Happiness: " + getHappiness());
+        System.out.println("Food: " + getFoodLevel());
+        System.out.println("Water: " + getWaterLevel());
+        System.out.println("Dirty: " + getDirtyLevel());
+        System.out.println("Play: " + getPlayLevel());
+    }
+    /*
+     * This method will store all records in RMS
+     */
+    public void save() {
+        
+    }
+    
+    /*
+     * This method will load all records from RMS
+     */
+    public void load() {
+        
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
+    }
+
+    public int getFoodLevel() {
+        return foodLevel;
+    }
+
+    public void setFoodLevel(int foodLevel) {
+        this.foodLevel = foodLevel;
+    }
+
+    public int getWaterLevel() {
+        return waterLevel;
+    }
+
+    public void setWaterLevel(int waterLevel) {
+        this.waterLevel = waterLevel;
+    }
+
+    public int getDirtyLevel() {
+        return dirtyLevel;
+    }
+
+    public void setDirtyLevel(int dirtyLevel) {
+        this.dirtyLevel = dirtyLevel;
+    }
+
+    public int getPlayLevel() {
+        return playLevel;
+    }
+
+    public void setPlayLevel(int playLevel) {
+        this.playLevel = playLevel;
+    }
 
     public String getName() {
         return sName;
     }
 
-    public void setName(String name) {
-        this.sName = name;
-    }
-
-    public int getIHappiness() {
-        return iHappiness;
-    }
-
-    public void setIHappiness(int iHappiness) {
-        this.iHappiness = iHappiness;
-    }
-
-    public int getIFoodLevel() {
-        return iFoodLevel;
-    }
-
-    public void setIFoodLevel(int iFoodLevel) {
-        this.iFoodLevel = iFoodLevel;
-    }
-
-    public int getIWaterLevel() {
-        return iWaterLevel;
-    }
-
-    public void setIWaterLevel(int iWaterLevel) {
-        this.iWaterLevel = iWaterLevel;
-    }
-
-    public int getIDirtyLevel() {
-        return iDirtyLevel;
-    }
-
-    public void setIDirtyLevel(int iDirtyLevel) {
-        this.iDirtyLevel = iDirtyLevel;
-    }
-
-    public int getIPlayLevel() {
-        return iPlayLevel;
-    }
-
-    public void setIPlayLevel(int iPlayLevel) {
-        this.iPlayLevel = iPlayLevel;
+    public void setName(String Name) {
+        this.sName = Name;
     }
     
 }
