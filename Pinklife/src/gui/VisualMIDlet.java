@@ -159,7 +159,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (displayable == CreatureNameTextBox) {//GEN-BEGIN:|7-commandAction|1|84-preAction
             if (command == backCommand) {//GEN-END:|7-commandAction|1|84-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|2|84-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|2|84-postAction
                 // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|87-preAction
                 // write pre-action user code here

@@ -170,12 +170,11 @@
                     <Property name="maxSize" typeID="Pint" value="V100"/>
                     <Property name="constraints" typeID="Pint" value="V1048576"/>
                     <Component componentID="84" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R85"/>
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R89"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R82"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R49"/>
-                        <Component componentID="85" typeID="C#SwitchDisplayableEventHandler">
+                        <Component componentID="89" typeID="C#PreviousScreenEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R84"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R33"/>
                         </Component>
                     </Component>
                     <Component componentID="87" typeID="C#CommandEventSource">
