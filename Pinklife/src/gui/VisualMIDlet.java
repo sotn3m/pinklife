@@ -5,9 +5,9 @@
 
 package gui;
 
+import data.CreatureBean;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
-import org.netbeans.microedition.lcdui.SplashScreen;
 
 /**
  * @author sotn3m <sotn3m at gmail dot com>
@@ -15,6 +15,8 @@ import org.netbeans.microedition.lcdui.SplashScreen;
 public class VisualMIDlet extends MIDlet implements CommandListener {
 
     private boolean midletPaused = false;
+    
+    private CreatureBean creature;
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private java.util.Hashtable __previousDisplayables = new java.util.Hashtable();
@@ -22,10 +24,10 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private List list;
     private Form form;
     private StringItem stringItem;
+    private Alert alert;
     private Command exitCommand;
     private Command feedCommand;
     private Command tidyCommand;
-    private Command exitCommand1;
     private Command backCommand;
     //</editor-fold>//GEN-END:|fields|0|
 
@@ -35,8 +37,20 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public VisualMIDlet() {
     }
 
+    private void create() {
+        creature = new CreatureBean("name", 0, 0, 0, 0, 0);
+        if(creature.save())
+            load();
+        else
+            loadingFailed();
+    }
+
     private void load() {
-        returnToGameScreen();
+        creature = new CreatureBean();
+        if(creature.load())
+            returnToGameScreen();
+        else
+            loadingFailed();
     }
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
@@ -139,40 +153,46 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == form) {//GEN-BEGIN:|7-commandAction|1|62-preAction
-            if (command == backCommand) {//GEN-END:|7-commandAction|1|62-preAction
+        if (displayable == alert) {//GEN-BEGIN:|7-commandAction|1|80-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|1|80-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|2|62-postAction
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|2|80-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|3|22-preAction
+            }//GEN-BEGIN:|7-commandAction|3|62-preAction
+        } else if (displayable == form) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|3|62-preAction
+                // write pre-action user code here
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|4|62-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|5|22-preAction
         } else if (displayable == gameCanvas) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|3|22-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|5|22-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|4|22-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|6|22-postAction
                 // write post-action user code here
-            } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|5|25-preAction
+            } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|7|25-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|6|25-postAction
+//GEN-LINE:|7-commandAction|8|25-postAction
                 // write post-action user code here
-            } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|7|27-preAction
+            } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|9|27-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|27-postAction
+//GEN-LINE:|7-commandAction|10|27-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|35-preAction
+            }//GEN-BEGIN:|7-commandAction|11|35-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|9|35-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|11|35-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|10|35-postAction
+                listAction();//GEN-LINE:|7-commandAction|12|35-postAction
                 // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|11|60-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|13|60-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|12|60-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|14|60-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|7-postCommandAction
-        }//GEN-END:|7-commandAction|13|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|15|7-postCommandAction
+        }//GEN-END:|7-commandAction|15|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|14|
-    //</editor-fold>//GEN-END:|7-commandAction|14|
+    }//GEN-BEGIN:|7-commandAction|16|
+    //</editor-fold>//GEN-END:|7-commandAction|16|
 
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
@@ -262,7 +282,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (__selectedString != null) {
             if (__selectedString.equals("New creature")) {//GEN-END:|33-action|1|41-preAction
                 // write pre-action user code here
-//GEN-LINE:|33-action|2|41-postAction
+                create();//GEN-LINE:|33-action|2|41-postAction
                 // write post-action user code here
             } else if (__selectedString.equals("Load creature")) {//GEN-LINE:|33-action|3|42-preAction
                 // write pre-action user code here
@@ -280,21 +300,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|37-getter|0|37-preInit
-    /**
-     * Returns an initiliazed instance of exitCommand1 component.
-     * @return the initialized component instance
-     */
-    public Command getExitCommand1() {
-        if (exitCommand1 == null) {//GEN-END:|37-getter|0|37-preInit
-            // write pre-init user code here
-            exitCommand1 = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|37-getter|1|37-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|37-getter|2|
-        return exitCommand1;
-    }
-    //</editor-fold>//GEN-END:|37-getter|2|
-
+    
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|49-getter|0|49-preInit
     /**
      * Returns an initiliazed instance of backCommand component.
@@ -343,6 +349,39 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return stringItem;
     }
     //</editor-fold>//GEN-END:|65-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: loadingFailed ">//GEN-BEGIN:|69-entry|0|70-preAction
+    /**
+     * Performs an action assigned to the loadingFailed entry-point.
+     */
+    public void loadingFailed() {//GEN-END:|69-entry|0|70-preAction
+        // write pre-action user code here
+        switchDisplayable(null, getAlert());//GEN-LINE:|69-entry|1|70-postAction
+        // write post-action user code here
+    }//GEN-BEGIN:|69-entry|2|
+    //</editor-fold>//GEN-END:|69-entry|2|
+
+
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert ">//GEN-BEGIN:|75-getter|0|75-preInit
+    /**
+     * Returns an initiliazed instance of alert component.
+     * @return the initialized component instance
+     */
+    public Alert getAlert() {
+        if (alert == null) {//GEN-END:|75-getter|0|75-preInit
+            // write pre-init user code here
+            alert = new Alert("Error", "Could not load the creature.\n\nIf your phone supports RMS, you might try freeing some space on your device.", null, AlertType.ERROR);//GEN-BEGIN:|75-getter|1|75-postInit
+            alert.addCommand(getBackCommand());
+            alert.setCommandListener(this);
+            alert.setTimeout(Alert.FOREVER);//GEN-END:|75-getter|1|75-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|75-getter|2|
+        return alert;
+    }
+    //</editor-fold>//GEN-END:|75-getter|2|
+
+
 
 
 

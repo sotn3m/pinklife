@@ -37,6 +37,20 @@
                 <Component componentID="52" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="Vload();"/>
                 </Component>
+                <Component componentID="67" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreate();"/>
+                </Component>
+                <Component componentID="69" typeID="C#EntryPoint">
+                    <Property name="methodName" typeID="Pjava.lang.String" value="VloadingFailed"/>
+                    <Property name="start" typeID="C#EntryPointStartEventSource" value="R70"/>
+                    <Component componentID="70" typeID="C#EntryPointStartEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R77"/>
+                        <Component componentID="77" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R70"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R75"/>
+                        </Component>
+                    </Component>
+                </Component>
             </Component>
             <Component componentID="6" typeID="C#ControllersCategory">
                 <Component componentID="7" typeID="C#CommandListener"/>
@@ -82,15 +96,20 @@
                             <Property name="eventSource" typeID="C#EventSource" value="R35"/>
                         </Component>
                     </Component>
-                    <Component componentID="41" typeID="C#ListElementEventSource">
-                        <Property name="string" typeID="Pjava.lang.String" value="VNew creature"/>
-                    </Component>
                     <Component componentID="42" typeID="C#ListElementEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R53"/>
                         <Property name="string" typeID="Pjava.lang.String" value="VLoad creature"/>
                         <Component componentID="53" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R42"/>
                             <Property name="callPoint" typeID="C#CallPoint" value="R52"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="41" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R68"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VNew creature"/>
+                        <Component componentID="68" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R41"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R67"/>
                         </Component>
                     </Component>
                     <Component componentID="44" typeID="C#ListElementEventSource">
@@ -117,6 +136,12 @@
                     <Property name="title" typeID="Pjava.lang.String" value="Vform"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A1:3_R65"/>
+                    <Component componentID="65" typeID="Cjavax.microedition.lcdui.StringItem">
+                        <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem"/>
+                        <Property name="label" typeID="Pjava.lang.String" value="VHelp"/>
+                        <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R8"/>
+                        <Property name="text" typeID="Pjava.lang.String" value="V&#10;&#10;This is a game o life. Pink life. Your task is to take care of little creature. Whether the creature will be happy is up to you! ;-)&#10;&#10;How you can do it?&#10;Feed it, play with him, tidy after him ;-)&#10;At any time you can see how happy your little creature is!&#10;Good luck!:)"/>
+                    </Component>
                     <Component componentID="62" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R63"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R56"/>
@@ -125,11 +150,23 @@
                             <Property name="eventSource" typeID="C#EventSource" value="R62"/>
                         </Component>
                     </Component>
-                    <Component componentID="65" typeID="Cjavax.microedition.lcdui.StringItem">
-                        <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem"/>
-                        <Property name="label" typeID="Pjava.lang.String" value="VHelp"/>
-                        <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R8"/>
-                        <Property name="text" typeID="Pjava.lang.String" value="V&#10;&#10;This is a game o life. Pink life. Your task is to take care of little creature. Whether the creature will be happy is up to you! ;-)&#10;&#10;How you can do it?&#10;Feed it, play with him, tidy after him ;-)&#10;At any time you can see how happy your little creature is!&#10;Good luck!:)"/>
+                </Component>
+                <Component componentID="75" typeID="Cjavax.microedition.lcdui.Alert">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="Valert"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:3_R80"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VError"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="string" typeID="Pjava.lang.String" value="VCould not load the creature.&#10;&#10;If your phone supports RMS, you might try freeing some space on your device."/>
+                    <Property name="timeout" typeID="Pint" value="V-2"/>
+                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="EERROR"/>
+                    <Component componentID="80" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R81"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R75"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R49"/>
+                        <Component componentID="81" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R80"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R33"/>
+                        </Component>
                     </Component>
                 </Component>
             </Component>
@@ -162,11 +199,6 @@
                     <Property name="priority" typeID="Pint" value="V0"/>
                     <Property name="ordinary" typeID="Pboolean" value="Vfalse"/>
                 </Component>
-                <Component componentID="37" typeID="Cjavax.microedition.lcdui.Command">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="VexitCommand1"/>
-                    <Property name="label" typeID="Pjava.lang.String" value="VExit"/>
-                    <Property name="type" typeID="Pint" value="V7"/>
-                </Component>
                 <Component componentID="49" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VbackCommand"/>
                     <Property name="label" typeID="Pjava.lang.String" value="VBack"/>
@@ -177,11 +209,14 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="52" descriptorID="componentNode52" x="282" y="638"/>
-        <Node componentID="33" descriptorID="componentNode33" x="128" y="501"/>
-        <Node componentID="30" descriptorID="componentNode30" x="696" y="50"/>
-        <Node componentID="13" descriptorID="componentNode13" x="525" y="119"/>
-        <Node componentID="2" descriptorID="componentNode2" x="269" y="246"/>
-        <Node componentID="56" descriptorID="componentNode56" x="97" y="699"/>
+        <Node componentID="67" descriptorID="componentNode67" x="477" y="458"/>
+        <Node componentID="52" descriptorID="componentNode52" x="34" y="140"/>
+        <Node componentID="69" descriptorID="componentNode69" x="237" y="32"/>
+        <Node componentID="56" descriptorID="componentNode56" x="34" y="458"/>
+        <Node componentID="75" descriptorID="componentNode75" x="477" y="140"/>
+        <Node componentID="30" descriptorID="componentNode30" x="1161" y="619"/>
+        <Node componentID="2" descriptorID="componentNode2" x="683" y="263"/>
+        <Node componentID="13" descriptorID="componentNode13" x="926" y="458"/>
+        <Node componentID="33" descriptorID="componentNode33" x="237" y="263"/>
     </FlowScene>
 </VisualDesign>

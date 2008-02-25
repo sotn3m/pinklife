@@ -1,11 +1,14 @@
 package gui;
 
+import data.CreatureBean;
 import javax.microedition.lcdui.*;
 
 /**
  * @author sotn3m <sotn3m at gmail dot com>
  */
 public class GameCanvas extends Canvas implements CommandListener {
+    private CreatureBean creature;
+    
     /**
      * constructor
      */
@@ -17,6 +20,10 @@ public class GameCanvas extends Canvas implements CommandListener {
             e.printStackTrace();
         }
     } 
+ 
+    public void assignCreature(CreatureBean creature) {
+        this.creature = creature;
+    }
     
     /**
      * paint

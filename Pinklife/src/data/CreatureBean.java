@@ -20,6 +20,15 @@ public class CreatureBean {
         sName = new String();
     }
 
+    public CreatureBean(String sName, int happiness, int foodLevel, int waterLevel, int dirtyLevel, int playLevel) {
+        this.sName = sName;
+        this.happiness = happiness;
+        this.foodLevel = foodLevel;
+        this.waterLevel = waterLevel;
+        this.dirtyLevel = dirtyLevel;
+        this.playLevel = playLevel;
+    }
+
     public void debug() {
         System.out.println(getName());
         System.out.println("Happiness: " + getHappiness());
@@ -55,7 +64,10 @@ public class CreatureBean {
     public boolean save() {
         try {
             //firstly delete all previous record stores:
-            RecordStore.deleteRecordStore(storeName);
+            try {
+                RecordStore.deleteRecordStore(storeName);
+            }
+            catch(Exception ex){} //ignore
 
             //create record store:
             RecordStore store = RecordStore.openRecordStore(storeName, true);
