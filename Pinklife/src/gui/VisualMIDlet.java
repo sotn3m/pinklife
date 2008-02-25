@@ -25,10 +25,12 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private Form form;
     private StringItem stringItem;
     private Alert alert;
+    private TextBox CreatureNameTextBox;
     private Command exitCommand;
     private Command feedCommand;
     private Command tidyCommand;
     private Command backCommand;
+    private Command okCommand;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -38,7 +40,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     }
 
     private void create() {
-        creature = new CreatureBean("name", 0, 0, 0, 0, 0);
+        creature = new CreatureBean(getCreatureNameTextBox().getString(), 0, 0, 0, 0, 0);
         if(creature.save())
             load();
         else
@@ -48,7 +50,10 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private void load() {
         creature = new CreatureBean();
         if(creature.load())
+        {
+            getGameCanvas().assignCreature(creature);
             returnToGameScreen();
+        }
         else
             loadingFailed();
     }
@@ -136,8 +141,6 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             gameCanvas = new GameCanvas();//GEN-BEGIN:|13-getter|1|13-postInit
             gameCanvas.setTitle("gameCanvas");
             gameCanvas.addCommand(getExitCommand());
-            gameCanvas.addCommand(getFeedCommand());
-            gameCanvas.addCommand(getTidyCommand());
             gameCanvas.setCommandListener(this);//GEN-END:|13-getter|1|13-postInit
             // write post-init user code here
         }//GEN-BEGIN:|13-getter|2|
@@ -153,30 +156,32 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == alert) {//GEN-BEGIN:|7-commandAction|1|80-preAction
-            if (command == backCommand) {//GEN-END:|7-commandAction|1|80-preAction
+        if (displayable == CreatureNameTextBox) {//GEN-BEGIN:|7-commandAction|1|84-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|1|84-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|2|80-postAction
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|2|84-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|3|62-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|87-preAction
+                // write pre-action user code here
+                create();//GEN-LINE:|7-commandAction|4|87-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|5|80-preAction
+        } else if (displayable == alert) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|5|80-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|6|80-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|7|62-preAction
         } else if (displayable == form) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|3|62-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|7|62-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|4|62-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|62-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|22-preAction
+            }//GEN-BEGIN:|7-commandAction|9|22-preAction
         } else if (displayable == gameCanvas) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|5|22-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|9|22-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|6|22-postAction
-                // write post-action user code here
-            } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|7|25-preAction
-                // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|25-postAction
-                // write post-action user code here
-            } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|9|27-preAction
-                // write pre-action user code here
-//GEN-LINE:|7-commandAction|10|27-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|10|22-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|11|35-preAction
         } else if (displayable == list) {
@@ -282,7 +287,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (__selectedString != null) {
             if (__selectedString.equals("New creature")) {//GEN-END:|33-action|1|41-preAction
                 // write pre-action user code here
-                create();//GEN-LINE:|33-action|2|41-postAction
+                switchDisplayable(null, getCreatureNameTextBox());//GEN-LINE:|33-action|2|41-postAction
                 // write post-action user code here
             } else if (__selectedString.equals("Load creature")) {//GEN-LINE:|33-action|3|42-preAction
                 // write pre-action user code here
@@ -380,6 +385,39 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return alert;
     }
     //</editor-fold>//GEN-END:|75-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CreatureNameTextBox ">//GEN-BEGIN:|82-getter|0|82-preInit
+    /**
+     * Returns an initiliazed instance of CreatureNameTextBox component.
+     * @return the initialized component instance
+     */
+    public TextBox getCreatureNameTextBox() {
+        if (CreatureNameTextBox == null) {//GEN-END:|82-getter|0|82-preInit
+            // write pre-init user code here
+            CreatureNameTextBox = new TextBox("Choose your creature name:", "", 100, TextField.ANY | TextField.INITIAL_CAPS_WORD);//GEN-BEGIN:|82-getter|1|82-postInit
+            CreatureNameTextBox.addCommand(getBackCommand());
+            CreatureNameTextBox.addCommand(getOkCommand());
+            CreatureNameTextBox.setCommandListener(this);//GEN-END:|82-getter|1|82-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|82-getter|2|
+        return CreatureNameTextBox;
+    }
+    //</editor-fold>//GEN-END:|82-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|86-getter|0|86-preInit
+    /**
+     * Returns an initiliazed instance of okCommand component.
+     * @return the initialized component instance
+     */
+    public Command getOkCommand() {
+        if (okCommand == null) {//GEN-END:|86-getter|0|86-preInit
+            // write pre-init user code here
+            okCommand = new Command("Ok", Command.OK, 0);//GEN-LINE:|86-getter|1|86-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|86-getter|2|
+        return okCommand;
+    }
+    //</editor-fold>//GEN-END:|86-getter|2|
 
 
 

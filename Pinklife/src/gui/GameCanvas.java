@@ -32,7 +32,23 @@ public class GameCanvas extends Canvas implements CommandListener {
         g.setColor(255,255,255);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(255,0,255);
-        g.drawString("Sample Text",0,0,Graphics.TOP|Graphics.LEFT);
+        g.drawString(getDescription(),0,0,Graphics.TOP|Graphics.LEFT);
+    }
+    
+    private String getDescription() {
+        StringBuffer strbuf = new StringBuffer();
+        strbuf.append(creature.getName());
+        strbuf.append(" ");
+        strbuf.append(creature.getHappiness());
+        strbuf.append(" ");
+        strbuf.append(creature.getDirtyLevel());
+        strbuf.append(" ");
+        strbuf.append(creature.getWaterLevel());
+        strbuf.append(" ");
+        strbuf.append(creature.getFoodLevel());
+        strbuf.append(" ");
+        strbuf.append(creature.getPlayLevel());        
+        return strbuf.toString();        
     }
     
     /**
