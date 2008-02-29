@@ -110,7 +110,31 @@ public class CreatureBean {
             return false;
         }
     }
+    
+    public void eat() {
+        foodLevel+=1;
+    }
+    
+    public void drink() {
+        waterLevel+=1;
+    }
+    
+    public void tidy() {
+        dirtyLevel-=2;
+    }
+    
+    public void play() {
+        playLevel+=3;
+    }
+    
+    public void timePass() {
+        foodLevel--;
+        waterLevel--;
+        playLevel--;
+        dirtyLevel++;
+    }
 
+    //<editor-fold defaultstate="collapsed" desc="Accessor methods">
     public int getHappiness() {
         return happiness;
     }
@@ -158,4 +182,5 @@ public class CreatureBean {
     public void setName(String Name) {
         this.sName = Name;
     }
+    //</editor-fold>
 }

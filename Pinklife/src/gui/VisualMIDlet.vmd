@@ -37,9 +37,6 @@
                 <Component componentID="52" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="Vload();"/>
                 </Component>
-                <Component componentID="67" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="Vcreate();"/>
-                </Component>
                 <Component componentID="69" typeID="C#EntryPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VloadingFailed"/>
                     <Property name="start" typeID="C#EntryPointStartEventSource" value="R70"/>
@@ -51,6 +48,21 @@
                         </Component>
                     </Component>
                 </Component>
+                <Component componentID="67" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreate();"/>
+                </Component>
+                <Component componentID="92" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.eat();"/>
+                </Component>
+                <Component componentID="94" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.tidy();"/>
+                </Component>
+                <Component componentID="100" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.drink();"/>
+                </Component>
+                <Component componentID="102" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.play();"/>
+                </Component>
             </Component>
             <Component componentID="6" typeID="C#ControllersCategory">
                 <Component componentID="7" typeID="C#CommandListener"/>
@@ -60,7 +72,7 @@
             <Component componentID="10" typeID="C#DisplayablesCategory">
                 <Component componentID="13" typeID="Cgui.GameCanvas">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VgameCanvas"/>
-                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:3_R22"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A5:3_R223_R903_R913_R973_R99"/>
                     <Property name="title" typeID="Pjava.lang.String" value="VgameCanvas"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Component componentID="22" typeID="C#CommandEventSource">
@@ -70,6 +82,42 @@
                         <Component componentID="23" typeID="C#ExitMidletEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R22"/>
                             <Property name="mobileDevice" typeID="C#MobileDevice" value="R2"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="90" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R93"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R24"/>
+                        <Component componentID="93" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R90"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="91" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R95"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R26"/>
+                        <Component componentID="95" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R91"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R94"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="97" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R101"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R96"/>
+                        <Component componentID="101" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R97"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="99" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R103"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R98"/>
+                        <Component componentID="103" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R99"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R102"/>
                         </Component>
                     </Component>
                 </Component>
@@ -128,12 +176,6 @@
                     <Property name="title" typeID="Pjava.lang.String" value="Vform"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A1:3_R65"/>
-                    <Component componentID="65" typeID="Cjavax.microedition.lcdui.StringItem">
-                        <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem"/>
-                        <Property name="label" typeID="Pjava.lang.String" value="VHelp"/>
-                        <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R8"/>
-                        <Property name="text" typeID="Pjava.lang.String" value="V&#10;&#10;This is a game o life. Pink life. Your task is to take care of little creature. Whether the creature will be happy is up to you! ;-)&#10;&#10;How you can do it?&#10;Feed it, play with him, tidy after him ;-)&#10;At any time you can see how happy your little creature is!&#10;Good luck!:)"/>
-                    </Component>
                     <Component componentID="62" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R63"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R56"/>
@@ -141,6 +183,12 @@
                         <Component componentID="63" typeID="C#PreviousScreenEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R62"/>
                         </Component>
+                    </Component>
+                    <Component componentID="65" typeID="Cjavax.microedition.lcdui.StringItem">
+                        <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem"/>
+                        <Property name="label" typeID="Pjava.lang.String" value="VHelp"/>
+                        <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R8"/>
+                        <Property name="text" typeID="Pjava.lang.String" value="V&#10;&#10;This is a game o life. Pink life. Your task is to take care of little creature. Whether the creature will be happy is up to you! ;-)&#10;&#10;How you can do it?&#10;Feed it, play with him, tidy after him ;-)&#10;At any time you can see how happy your little creature is!&#10;Good luck!:)"/>
                     </Component>
                 </Component>
                 <Component componentID="75" typeID="Cjavax.microedition.lcdui.Alert">
@@ -227,20 +275,34 @@
                     <Property name="label" typeID="Pjava.lang.String" value="VOk"/>
                     <Property name="type" typeID="Pint" value="V4"/>
                 </Component>
+                <Component componentID="96" typeID="Cjavax.microedition.lcdui.Command">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VdrinkCommand"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VGive water!"/>
+                    <Property name="type" typeID="Pint" value="V1"/>
+                </Component>
+                <Component componentID="98" typeID="Cjavax.microedition.lcdui.Command">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VplayCommand"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VPlay!"/>
+                    <Property name="type" typeID="Pint" value="V1"/>
+                </Component>
             </Component>
             <Component componentID="12" typeID="C#ResourcesCategory"/>
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="67" descriptorID="componentNode67" x="34" y="282"/>
-        <Node componentID="52" descriptorID="componentNode52" x="240" y="477"/>
-        <Node componentID="69" descriptorID="componentNode69" x="534" y="32"/>
-        <Node componentID="56" descriptorID="componentNode56" x="774" y="477"/>
-        <Node componentID="75" descriptorID="componentNode75" x="774" y="140"/>
-        <Node componentID="30" descriptorID="componentNode30" x="1447" y="601"/>
-        <Node componentID="2" descriptorID="componentNode2" x="969" y="282"/>
-        <Node componentID="13" descriptorID="componentNode13" x="1212" y="477"/>
-        <Node componentID="82" descriptorID="componentNode82" x="240" y="140"/>
-        <Node componentID="33" descriptorID="componentNode33" x="534" y="282"/>
+        <Node componentID="13" descriptorID="componentNode13" x="242" y="121"/>
+        <Node componentID="94" descriptorID="componentNode94" x="821" y="121"/>
+        <Node componentID="52" descriptorID="componentNode52" x="1064" y="571"/>
+        <Node componentID="30" descriptorID="componentNode30" x="536" y="320"/>
+        <Node componentID="33" descriptorID="componentNode33" x="536" y="571"/>
+        <Node componentID="92" descriptorID="componentNode92" x="34" y="32"/>
+        <Node componentID="82" descriptorID="componentNode82" x="242" y="428"/>
+        <Node componentID="69" descriptorID="componentNode69" x="536" y="890"/>
+        <Node componentID="67" descriptorID="componentNode67" x="34" y="571"/>
+        <Node componentID="56" descriptorID="componentNode56" x="821" y="766"/>
+        <Node componentID="2" descriptorID="componentNode2" x="821" y="428"/>
+        <Node componentID="102" descriptorID="componentNode102" x="34" y="320"/>
+        <Node componentID="100" descriptorID="componentNode100" x="536" y="32"/>
+        <Node componentID="75" descriptorID="componentNode75" x="242" y="766"/>
     </FlowScene>
 </VisualDesign>

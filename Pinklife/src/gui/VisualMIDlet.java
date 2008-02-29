@@ -31,6 +31,8 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private Command tidyCommand;
     private Command backCommand;
     private Command okCommand;
+    private Command drinkCommand;
+    private Command playCommand;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -141,6 +143,10 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             gameCanvas = new GameCanvas();//GEN-BEGIN:|13-getter|1|13-postInit
             gameCanvas.setTitle("gameCanvas");
             gameCanvas.addCommand(getExitCommand());
+            gameCanvas.addCommand(getFeedCommand());
+            gameCanvas.addCommand(getTidyCommand());
+            gameCanvas.addCommand(getDrinkCommand());
+            gameCanvas.addCommand(getPlayCommand());
             gameCanvas.setCommandListener(this);//GEN-END:|13-getter|1|13-postInit
             // write post-init user code here
         }//GEN-BEGIN:|13-getter|2|
@@ -177,27 +183,45 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|62-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|22-preAction
+            }//GEN-BEGIN:|7-commandAction|9|97-preAction
         } else if (displayable == gameCanvas) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|9|22-preAction
+            if (command == drinkCommand) {//GEN-END:|7-commandAction|9|97-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|10|22-postAction
+                creature.drink();//GEN-LINE:|7-commandAction|10|97-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|11|35-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|11|22-preAction
+                // write pre-action user code here
+                exitMIDlet();//GEN-LINE:|7-commandAction|12|22-postAction
+                // write post-action user code here
+            } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|13|90-preAction
+                // write pre-action user code here
+                creature.eat();//GEN-LINE:|7-commandAction|14|90-postAction
+                // write post-action user code here
+            } else if (command == playCommand) {//GEN-LINE:|7-commandAction|15|99-preAction
+                // write pre-action user code here
+                creature.play();//GEN-LINE:|7-commandAction|16|99-postAction
+                // write post-action user code here
+            } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|17|91-preAction
+                // write pre-action user code here
+                creature.tidy();//GEN-LINE:|7-commandAction|18|91-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|19|35-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|11|35-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|19|35-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|12|35-postAction
+                listAction();//GEN-LINE:|7-commandAction|20|35-postAction
                 // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|13|60-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|21|60-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|14|60-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|22|60-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|7-postCommandAction
-        }//GEN-END:|7-commandAction|15|7-postCommandAction
-        // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|16|
-    //</editor-fold>//GEN-END:|7-commandAction|16|
+            }//GEN-BEGIN:|7-commandAction|23|7-postCommandAction
+        }//GEN-END:|7-commandAction|23|7-postCommandAction
+        
+        getGameCanvas().repaint();
+        
+    }//GEN-BEGIN:|7-commandAction|24|
+    //</editor-fold>//GEN-END:|7-commandAction|24|
 
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
@@ -418,6 +442,36 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return okCommand;
     }
     //</editor-fold>//GEN-END:|86-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: drinkCommand ">//GEN-BEGIN:|96-getter|0|96-preInit
+    /**
+     * Returns an initiliazed instance of drinkCommand component.
+     * @return the initialized component instance
+     */
+    public Command getDrinkCommand() {
+        if (drinkCommand == null) {//GEN-END:|96-getter|0|96-preInit
+            // write pre-init user code here
+            drinkCommand = new Command("Give water!", Command.SCREEN, 0);//GEN-LINE:|96-getter|1|96-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|96-getter|2|
+        return drinkCommand;
+    }
+    //</editor-fold>//GEN-END:|96-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: playCommand ">//GEN-BEGIN:|98-getter|0|98-preInit
+    /**
+     * Returns an initiliazed instance of playCommand component.
+     * @return the initialized component instance
+     */
+    public Command getPlayCommand() {
+        if (playCommand == null) {//GEN-END:|98-getter|0|98-preInit
+            // write pre-init user code here
+            playCommand = new Command("Play!", Command.SCREEN, 0);//GEN-LINE:|98-getter|1|98-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|98-getter|2|
+        return playCommand;
+    }
+    //</editor-fold>//GEN-END:|98-getter|2|
 
 
 
