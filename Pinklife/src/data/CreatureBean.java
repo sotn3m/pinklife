@@ -213,6 +213,6 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     //</editor-fold>
 
     private void calculateHappiness() {
-        
+        //TODO
     }
 }
