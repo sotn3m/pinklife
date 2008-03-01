@@ -52,16 +52,16 @@
                     <Property name="accessCode" typeID="P#javacode" value="Vcreate();"/>
                 </Component>
                 <Component componentID="92" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.eat();"/>
+                    <Property name="accessCode" typeID="P#javacode" value="V"/>
                 </Component>
                 <Component componentID="94" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="Vcreature.tidy();"/>
                 </Component>
-                <Component componentID="100" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="Vcreature.drink();"/>
-                </Component>
                 <Component componentID="102" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="Vcreature.play();"/>
+                </Component>
+                <Component componentID="100" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="V"/>
                 </Component>
             </Component>
             <Component componentID="6" typeID="C#ControllersCategory">
@@ -84,15 +84,6 @@
                             <Property name="mobileDevice" typeID="C#MobileDevice" value="R2"/>
                         </Component>
                     </Component>
-                    <Component componentID="90" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R93"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R24"/>
-                        <Component componentID="93" typeID="C#CallPointEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R90"/>
-                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
-                        </Component>
-                    </Component>
                     <Component componentID="91" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R95"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
@@ -102,13 +93,13 @@
                             <Property name="callPoint" typeID="C#CallPoint" value="R94"/>
                         </Component>
                     </Component>
-                    <Component componentID="97" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R101"/>
+                    <Component componentID="90" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R107"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R96"/>
-                        <Component componentID="101" typeID="C#CallPointEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R97"/>
-                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R24"/>
+                        <Component componentID="107" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R90"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R104"/>
                         </Component>
                     </Component>
                     <Component componentID="99" typeID="C#CommandEventSource">
@@ -118,6 +109,15 @@
                         <Component componentID="103" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R99"/>
                             <Property name="callPoint" typeID="C#CallPoint" value="R102"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="97" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R122"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R13"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R96"/>
+                        <Component componentID="122" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R97"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R116"/>
                         </Component>
                     </Component>
                 </Component>
@@ -235,6 +235,94 @@
                         </Component>
                     </Component>
                 </Component>
+                <Component componentID="104" typeID="Cjavax.microedition.lcdui.List">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VlistOfFoods"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R105"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VList of foods"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="elements" typeID="1C#ListElementEventSource" value="A4:4_R1084_R1094_R1104_R111"/>
+                    <Property name="selectCommand" typeID="C#CommandEventSource" value="R105"/>
+                    <Component componentID="110" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R114"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VPeach"/>
+                        <Component componentID="114" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R110"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="111" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R115"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VIce cream"/>
+                        <Component componentID="115" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R111"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="108" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R112"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VOrange"/>
+                        <Component componentID="112" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R108"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="109" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R113"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VPineapple"/>
+                        <Component componentID="113" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R109"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R92"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="105" typeID="C#ListSelectCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R106"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R104"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R34"/>
+                        <Component componentID="106" typeID="C#ListEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R105"/>
+                        </Component>
+                    </Component>
+                </Component>
+                <Component componentID="116" typeID="Cjavax.microedition.lcdui.List">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VlistOfDrinks"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R117"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VList of drinks"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="elements" typeID="1C#ListElementEventSource" value="A3:4_R1194_R1204_R121"/>
+                    <Property name="selectCommand" typeID="C#CommandEventSource" value="R117"/>
+                    <Component componentID="117" typeID="C#ListSelectCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R118"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R116"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R34"/>
+                        <Component componentID="118" typeID="C#ListEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R117"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="119" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R123"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VMilk"/>
+                        <Component componentID="123" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R119"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="120" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R124"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VOrange juice"/>
+                        <Component componentID="124" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R120"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="121" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R125"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VCoca cola"/>
+                        <Component componentID="125" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R121"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        </Component>
+                    </Component>
+                </Component>
             </Component>
             <Component componentID="11" typeID="C#CommandsCategory">
                 <Component componentID="15" typeID="C#SplashScreenDismissCommand">
@@ -256,7 +344,7 @@
                 </Component>
                 <Component componentID="26" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VtidyCommand"/>
-                    <Property name="label" typeID="Pjava.lang.String" value="VTidy his room!"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VTidy him/his room!"/>
                     <Property name="type" typeID="Pint" value="V1"/>
                 </Component>
                 <Component componentID="34" typeID="C#ListSelectCommand">
@@ -275,14 +363,14 @@
                     <Property name="label" typeID="Pjava.lang.String" value="VOk"/>
                     <Property name="type" typeID="Pint" value="V4"/>
                 </Component>
-                <Component componentID="96" typeID="Cjavax.microedition.lcdui.Command">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="VdrinkCommand"/>
-                    <Property name="label" typeID="Pjava.lang.String" value="VGive water!"/>
-                    <Property name="type" typeID="Pint" value="V1"/>
-                </Component>
                 <Component componentID="98" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VplayCommand"/>
-                    <Property name="label" typeID="Pjava.lang.String" value="VPlay!"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VPlay!;-)"/>
+                    <Property name="type" typeID="Pint" value="V1"/>
+                </Component>
+                <Component componentID="96" typeID="Cjavax.microedition.lcdui.Command">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VdrinkCommand"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VGive sth to drink!"/>
                     <Property name="type" typeID="Pint" value="V1"/>
                 </Component>
             </Component>
@@ -290,19 +378,21 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="13" descriptorID="componentNode13" x="242" y="121"/>
-        <Node componentID="94" descriptorID="componentNode94" x="821" y="121"/>
-        <Node componentID="52" descriptorID="componentNode52" x="1064" y="571"/>
-        <Node componentID="30" descriptorID="componentNode30" x="536" y="320"/>
-        <Node componentID="33" descriptorID="componentNode33" x="536" y="571"/>
-        <Node componentID="92" descriptorID="componentNode92" x="34" y="32"/>
-        <Node componentID="82" descriptorID="componentNode82" x="242" y="428"/>
-        <Node componentID="69" descriptorID="componentNode69" x="536" y="890"/>
-        <Node componentID="67" descriptorID="componentNode67" x="34" y="571"/>
-        <Node componentID="56" descriptorID="componentNode56" x="821" y="766"/>
-        <Node componentID="2" descriptorID="componentNode2" x="821" y="428"/>
-        <Node componentID="102" descriptorID="componentNode102" x="34" y="320"/>
-        <Node componentID="100" descriptorID="componentNode100" x="536" y="32"/>
-        <Node componentID="75" descriptorID="componentNode75" x="242" y="766"/>
+        <Node componentID="69" descriptorID="componentNode69" x="34" y="712"/>
+        <Node componentID="75" descriptorID="componentNode75" x="319" y="570"/>
+        <Node componentID="2" descriptorID="componentNode2" x="846" y="570"/>
+        <Node componentID="52" descriptorID="componentNode52" x="1089" y="712"/>
+        <Node componentID="92" descriptorID="componentNode92" x="1089" y="481"/>
+        <Node componentID="56" descriptorID="componentNode56" x="846" y="907"/>
+        <Node componentID="104" descriptorID="componentNode104" x="846" y="282"/>
+        <Node componentID="30" descriptorID="componentNode30" x="34" y="121"/>
+        <Node componentID="13" descriptorID="componentNode13" x="319" y="282"/>
+        <Node componentID="33" descriptorID="componentNode33" x="613" y="712"/>
+        <Node componentID="82" descriptorID="componentNode82" x="319" y="907"/>
+        <Node componentID="102" descriptorID="componentNode102" x="34" y="481"/>
+        <Node componentID="67" descriptorID="componentNode67" x="613" y="1050"/>
+        <Node componentID="100" descriptorID="componentNode100" x="319" y="32"/>
+        <Node componentID="116" descriptorID="componentNode116" x="613" y="121"/>
+        <Node componentID="94" descriptorID="componentNode94" x="613" y="481"/>
     </FlowScene>
 </VisualDesign>

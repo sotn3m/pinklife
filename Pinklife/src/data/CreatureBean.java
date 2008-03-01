@@ -10,34 +10,33 @@ public class CreatureBean {
 
     private final String storeName = "creatureData";
     private String sName;
+    
     private int happiness;
-    private int foodLevel;
+    
+    private int illness; // 0 if none, 1 if ill.
+    private int size; // 1, 2 or 3.            
+            
+    private int foodLevel; // different meals
     private int waterLevel;
-    private int dirtyLevel;
+    private int dirtyLevel; //creature's dirtyness
+    private int messLevel; //around
     private int playLevel;
-
-    public CreatureBean() {
-        sName = new String();
-    }
-
-    public CreatureBean(String sName, int happiness, int foodLevel, int waterLevel, int dirtyLevel, int playLevel) {
+    private int tireLevel; // sleeping/turning light off
+    
+    public CreatureBean(String sName, int happiness, int illness, int size, int foodLevel, int waterLevel, int dirtyLevel, int messLevel, int playLevel, int tireLevel) {
         this.sName = sName;
         this.happiness = happiness;
+        this.illness = illness;
+        this.size = size;
         this.foodLevel = foodLevel;
         this.waterLevel = waterLevel;
         this.dirtyLevel = dirtyLevel;
+        this.messLevel = messLevel;
         this.playLevel = playLevel;
-    }
+        this.tireLevel = tireLevel;
+    }    
 
-    public void debug() {
-        System.out.println(getName());
-        System.out.println("Happiness: " + getHappiness());
-        System.out.println("Food: " + getFoodLevel());
-        System.out.println("Water: " + getWaterLevel());
-        System.out.println("Dirty: " + getDirtyLevel());
-        System.out.println("Play: " + getPlayLevel());
-    }
-
+    //<editor-fold defaultstate="collapsed" desc="int to byte and vice versa">
     public static byte[] intToByte(int value) {
         byte[] byteArray = new byte[4];
         byteArray[0] = (byte) ((value >> 24) & 0xFF);
@@ -55,6 +54,7 @@ public class CreatureBean {
         temp = (int) (value[0] << 24);
         return temp;
     }
+    //</editor-fold>
 
     /*
      * This method will store all records in RMS.
@@ -129,9 +129,11 @@ public class CreatureBean {
     
     public void timePass() {
         foodLevel--;
-        waterLevel--;
+        waterLevel-=2;
         playLevel--;
         dirtyLevel++;
+        messLevel+=2;
+        
     }
 
     //<editor-fold defaultstate="collapsed" desc="Accessor methods">
@@ -181,6 +183,38 @@ public class CreatureBean {
 
     public void setName(String Name) {
         this.sName = Name;
+    }
+
+    public int getMessLevel() {
+        return messLevel;
+    }
+
+    public void setMessLevel(int messLevel) {
+        this.messLevel = messLevel;
+    }
+
+    public int getTireLevel() {
+        return tireLevel;
+    }
+
+    public void setTireLevel(int tireLevel) {
+        this.tireLevel = tireLevel;
+    }
+
+    public int getIllness() {
+        return illness;
+    }
+
+    public void setIllness(int illness) {
+        this.illness = illness;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
     //</editor-fold>
 }
