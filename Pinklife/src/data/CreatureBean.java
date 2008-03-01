@@ -83,7 +83,11 @@ public class CreatureBean {
             store.addRecord(intToByte(getFoodLevel()), 0, 4);
             store.addRecord(intToByte(getWaterLevel()), 0, 4);
             store.addRecord(intToByte(getDirtyLevel()), 0, 4);
+            store.addRecord(intToByte(getMessLevel()), 0, 4);
             store.addRecord(intToByte(getPlayLevel()), 0, 4);
+            store.addRecord(intToByte(getTireLevel()), 0, 4);
+            store.addRecord(intToByte(getSize()), 0, 4);
+            store.addRecord(intToByte(getIllness()), 0, 4);            
 
             return true;
         } catch (Exception ex) {
@@ -108,7 +112,11 @@ public class CreatureBean {
             setFoodLevel(byteToInt(store.getRecord(3)));
             setWaterLevel(byteToInt(store.getRecord(4)));
             setDirtyLevel(byteToInt(store.getRecord(5)));
-            setPlayLevel(byteToInt(store.getRecord(6)));
+            setMessLevel(byteToInt(store.getRecord(6)));
+            setPlayLevel(byteToInt(store.getRecord(7)));
+            setTireLevel(byteToInt(store.getRecord(8)));
+            setSize(byteToInt(store.getRecord(9)));
+            setIllness(byteToInt(store.getRecord(10)));
 
             return true;
         } catch (Exception ex) {
