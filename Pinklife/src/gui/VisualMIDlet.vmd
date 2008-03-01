@@ -290,14 +290,6 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="elements" typeID="1C#ListElementEventSource" value="A3:4_R1194_R1204_R121"/>
                     <Property name="selectCommand" typeID="C#CommandEventSource" value="R117"/>
-                    <Component componentID="117" typeID="C#ListSelectCommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R118"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R116"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R34"/>
-                        <Component componentID="118" typeID="C#ListEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R117"/>
-                        </Component>
-                    </Component>
                     <Component componentID="119" typeID="C#ListElementEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R123"/>
                         <Property name="string" typeID="Pjava.lang.String" value="VMilk"/>
@@ -306,12 +298,12 @@
                             <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
                         </Component>
                     </Component>
-                    <Component componentID="120" typeID="C#ListElementEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R124"/>
-                        <Property name="string" typeID="Pjava.lang.String" value="VOrange juice"/>
-                        <Component componentID="124" typeID="C#CallPointEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R120"/>
-                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                    <Component componentID="117" typeID="C#ListSelectCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R118"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R116"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R34"/>
+                        <Component componentID="118" typeID="C#ListEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R117"/>
                         </Component>
                     </Component>
                     <Component componentID="121" typeID="C#ListElementEventSource">
@@ -319,6 +311,14 @@
                         <Property name="string" typeID="Pjava.lang.String" value="VCoca cola"/>
                         <Component componentID="125" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R121"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="120" typeID="C#ListElementEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R124"/>
+                        <Property name="string" typeID="Pjava.lang.String" value="VOrange juice"/>
+                        <Component componentID="124" typeID="C#CallPointEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R120"/>
                             <Property name="callPoint" typeID="C#CallPoint" value="R100"/>
                         </Component>
                     </Component>
@@ -378,21 +378,21 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="69" descriptorID="componentNode69" x="34" y="712"/>
-        <Node componentID="75" descriptorID="componentNode75" x="319" y="570"/>
+        <Node componentID="102" descriptorID="componentNode102" x="34" y="481"/>
+        <Node componentID="104" descriptorID="componentNode104" x="846" y="282"/>
+        <Node componentID="116" descriptorID="componentNode116" x="613" y="121"/>
         <Node componentID="2" descriptorID="componentNode2" x="846" y="570"/>
+        <Node componentID="75" descriptorID="componentNode75" x="319" y="570"/>
+        <Node componentID="94" descriptorID="componentNode94" x="613" y="481"/>
+        <Node componentID="13" descriptorID="componentNode13" x="319" y="282"/>
+        <Node componentID="100" descriptorID="componentNode100" x="319" y="32"/>
+        <Node componentID="69" descriptorID="componentNode69" x="34" y="712"/>
+        <Node componentID="30" descriptorID="componentNode30" x="34" y="121"/>
+        <Node componentID="56" descriptorID="componentNode56" x="846" y="907"/>
+        <Node componentID="67" descriptorID="componentNode67" x="613" y="1050"/>
+        <Node componentID="33" descriptorID="componentNode33" x="613" y="712"/>
         <Node componentID="52" descriptorID="componentNode52" x="1089" y="712"/>
         <Node componentID="92" descriptorID="componentNode92" x="1089" y="481"/>
-        <Node componentID="56" descriptorID="componentNode56" x="846" y="907"/>
-        <Node componentID="104" descriptorID="componentNode104" x="846" y="282"/>
-        <Node componentID="30" descriptorID="componentNode30" x="34" y="121"/>
-        <Node componentID="13" descriptorID="componentNode13" x="319" y="282"/>
-        <Node componentID="33" descriptorID="componentNode33" x="613" y="712"/>
         <Node componentID="82" descriptorID="componentNode82" x="319" y="907"/>
-        <Node componentID="102" descriptorID="componentNode102" x="34" y="481"/>
-        <Node componentID="67" descriptorID="componentNode67" x="613" y="1050"/>
-        <Node componentID="100" descriptorID="componentNode100" x="319" y="32"/>
-        <Node componentID="116" descriptorID="componentNode116" x="613" y="121"/>
-        <Node componentID="94" descriptorID="componentNode94" x="613" y="481"/>
     </FlowScene>
 </VisualDesign>

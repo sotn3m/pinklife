@@ -5,6 +5,7 @@
 package gui;
 
 import data.CreatureBean;
+import data.CreatureBehaviourInterface;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 
@@ -14,7 +15,7 @@ import javax.microedition.lcdui.*;
 public class VisualMIDlet extends MIDlet implements CommandListener {
 
     private boolean midletPaused = false;
-    private CreatureBean creature;
+    private CreatureBehaviourInterface creature;
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private java.util.Hashtable __previousDisplayables = new java.util.Hashtable();
@@ -520,7 +521,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             // write post-action user code here
             }//GEN-BEGIN:|104-action|9|104-postAction
         }//GEN-END:|104-action|9|104-postAction
-    // enter post-action user code here
+    returnToGameScreen();
     }//GEN-BEGIN:|104-action|10|
     //</editor-fold>//GEN-END:|104-action|10|
 
@@ -566,7 +567,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             // write post-action user code here
             }//GEN-BEGIN:|116-action|7|116-postAction
         }//GEN-END:|116-action|7|116-postAction
-    // enter post-action user code here
+    returnToGameScreen();
     }//GEN-BEGIN:|116-action|8|
     //</editor-fold>//GEN-END:|116-action|8|
     /**

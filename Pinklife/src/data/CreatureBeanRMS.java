@@ -17,17 +17,17 @@ public class CreatureBeanRMS {
     protected final String storeName = "creatureData";
     protected String sName;
     
-    protected int happiness;
+    protected int happiness; // -2 (very sad), -1 (sad), 0 (neutral), 1 (happy), 2 (very happy)
     
     protected int illness; // 0 if none, 1 if ill.
     protected int size; // 1, 2 or 3.            
             
-    protected int foodLevel; // different meals
+    protected int foodLevel;
     protected int waterLevel;
     protected int dirtyLevel; //creature's dirtyness
     protected int messLevel; //around
     protected int playLevel;
-    protected int tireLevel; // sleeping/turning light off
+    protected int tireLevel;
     private Random random;
 
     //<editor-fold defaultstate="collapsed" desc="int to byte[] and vice versa">
