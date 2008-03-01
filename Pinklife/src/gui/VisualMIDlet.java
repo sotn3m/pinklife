@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
 
 import data.CreatureBean;
@@ -15,7 +14,6 @@ import javax.microedition.lcdui.*;
 public class VisualMIDlet extends MIDlet implements CommandListener {
 
     private boolean midletPaused = false;
-    
     private CreatureBean creature;
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
@@ -36,7 +34,6 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private Command playCommand;
     private Command drinkCommand;
     //</editor-fold>//GEN-END:|fields|0|
-
     /**
      * The VisualMIDlet constructor.
      */
@@ -44,22 +41,23 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     }
 
     private void create() {
-        creature = new CreatureBean(getCreatureNameTextBox().getString(), 0, 0, 0, 0, 0);
-        if(creature.save())
+        creature = new CreatureBean(getCreatureNameTextBox().getString(), 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        if (creature.save()) {
             load();
-        else
+        } else {
             loadingFailed();
+        }
     }
 
     private void load() {
-        creature = new CreatureBean();
-        if(creature.load())
-        {
+        try {
+            creature = new CreatureBean();
+            
             getGameCanvas().assignCreature(creature);
             returnToGameScreen();
-        }
-        else
+        } catch (Exception ex) {
             loadingFailed();
+        }
     }
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
@@ -84,9 +82,9 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
      */
     private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
-        // write pre-initialize user code here
+    // write pre-initialize user code here
 //GEN-LINE:|0-initialize|1|0-postInitialize
-        // write post-initialize user code here
+    // write post-initialize user code here
     }//GEN-BEGIN:|0-initialize|2|
     //</editor-fold>//GEN-END:|0-initialize|2|
 
@@ -97,7 +95,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
         switchDisplayable(null, getList());//GEN-LINE:|3-startMIDlet|1|3-postAction
-        // write post-action user code here
+    // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
     //</editor-fold>//GEN-END:|3-startMIDlet|2|
 
@@ -108,7 +106,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void resumeMIDlet() {//GEN-END:|4-resumeMIDlet|0|4-preAction
         // write pre-action user code here
         load();//GEN-LINE:|4-resumeMIDlet|1|4-postAction
-        // write post-action user code here
+    // write post-action user code here
     }//GEN-BEGIN:|4-resumeMIDlet|2|
     //</editor-fold>//GEN-END:|4-resumeMIDlet|2|
 
@@ -130,7 +128,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         } else {
             display.setCurrent(alert, nextDisplayable);
         }//GEN-END:|5-switchDisplayable|1|5-postSwitch
-        // write post-switch user code here
+    // write post-switch user code here
     }//GEN-BEGIN:|5-switchDisplayable|2|
     //</editor-fold>//GEN-END:|5-switchDisplayable|2|
 
@@ -150,7 +148,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             gameCanvas.addCommand(getDrinkCommand());
             gameCanvas.addCommand(getPlayCommand());
             gameCanvas.setCommandListener(this);//GEN-END:|13-getter|1|13-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|13-getter|2|
         return gameCanvas;
     }
@@ -168,76 +166,74 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             if (command == backCommand) {//GEN-END:|7-commandAction|1|84-preAction
                 // write pre-action user code here
                 switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|2|84-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|87-preAction
                 // write pre-action user code here
                 create();//GEN-LINE:|7-commandAction|4|87-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|5|80-preAction
         } else if (displayable == alert) {
             if (command == backCommand) {//GEN-END:|7-commandAction|5|80-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|6|80-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|7|62-preAction
         } else if (displayable == form) {
             if (command == backCommand) {//GEN-END:|7-commandAction|7|62-preAction
                 // write pre-action user code here
                 switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|62-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|9|97-preAction
         } else if (displayable == gameCanvas) {
             if (command == drinkCommand) {//GEN-END:|7-commandAction|9|97-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getListOfDrinks());//GEN-LINE:|7-commandAction|10|97-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|11|22-preAction
                 // write pre-action user code here
                 exitMIDlet();//GEN-LINE:|7-commandAction|12|22-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|13|90-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getListOfFoods());//GEN-LINE:|7-commandAction|14|90-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == playCommand) {//GEN-LINE:|7-commandAction|15|99-preAction
                 // write pre-action user code here
                 creature.play();//GEN-LINE:|7-commandAction|16|99-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|17|91-preAction
                 // write pre-action user code here
                 creature.tidy();//GEN-LINE:|7-commandAction|18|91-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|19|35-preAction
         } else if (displayable == list) {
             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|19|35-preAction
                 // write pre-action user code here
                 listAction();//GEN-LINE:|7-commandAction|20|35-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|21|60-preAction
                 // write pre-action user code here
                 exitMIDlet();//GEN-LINE:|7-commandAction|22|60-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|23|117-preAction
         } else if (displayable == listOfDrinks) {
             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|23|117-preAction
                 // write pre-action user code here
                 listOfDrinksAction();//GEN-LINE:|7-commandAction|24|117-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|25|105-preAction
         } else if (displayable == listOfFoods) {
             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|25|105-preAction
                 // write pre-action user code here
                 listOfFoodsAction();//GEN-LINE:|7-commandAction|26|105-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
         }//GEN-END:|7-commandAction|27|7-postCommandAction
-        
+
         getGameCanvas().repaint();
         
     }//GEN-BEGIN:|7-commandAction|28|
     //</editor-fold>//GEN-END:|7-commandAction|28|
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
     /**
      * Returns an initiliazed instance of exitCommand component.
@@ -247,7 +243,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (exitCommand == null) {//GEN-END:|21-getter|0|21-preInit
             // write pre-init user code here
             exitCommand = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|21-getter|1|21-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|21-getter|2|
         return exitCommand;
     }
@@ -262,7 +258,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (feedCommand == null) {//GEN-END:|24-getter|0|24-preInit
             // write pre-init user code here
             feedCommand = new Command("Feed it!", "Feed it!", Command.SCREEN, 0);//GEN-LINE:|24-getter|1|24-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|24-getter|2|
         return feedCommand;
     }
@@ -277,7 +273,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (tidyCommand == null) {//GEN-END:|26-getter|0|26-preInit
             // write pre-init user code here
             tidyCommand = new Command("Tidy him/his room!", Command.SCREEN, 0);//GEN-LINE:|26-getter|1|26-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|26-getter|2|
         return tidyCommand;
     }
@@ -290,7 +286,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void returnToGameScreen() {//GEN-END:|30-entry|0|31-preAction
         // write pre-action user code here
         switchDisplayable(null, getGameCanvas());//GEN-LINE:|30-entry|1|31-postAction
-        // write post-action user code here
+    // write post-action user code here
     }//GEN-BEGIN:|30-entry|2|
     //</editor-fold>//GEN-END:|30-entry|2|
 
@@ -309,7 +305,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             list.addCommand(getExitCommand());
             list.setCommandListener(this);
             list.setSelectedFlags(new boolean[] { false, false, false });//GEN-END:|33-getter|1|33-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|33-getter|2|
         return list;
     }
@@ -326,24 +322,20 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             if (__selectedString.equals("New creature")) {//GEN-END:|33-action|1|41-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getCreatureNameTextBox());//GEN-LINE:|33-action|2|41-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Load creature")) {//GEN-LINE:|33-action|3|42-preAction
                 // write pre-action user code here
                 load();//GEN-LINE:|33-action|4|42-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Help")) {//GEN-LINE:|33-action|5|44-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getForm());//GEN-LINE:|33-action|6|44-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|33-action|7|33-postAction
         }//GEN-END:|33-action|7|33-postAction
-        // enter post-action user code here
+    // enter post-action user code here
     }//GEN-BEGIN:|33-action|8|
     //</editor-fold>//GEN-END:|33-action|8|
-
-
-
-    
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|49-getter|0|49-preInit
     /**
      * Returns an initiliazed instance of backCommand component.
@@ -353,7 +345,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (backCommand == null) {//GEN-END:|49-getter|0|49-preInit
             // write pre-init user code here
             backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|49-getter|1|49-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|49-getter|2|
         return backCommand;
     }
@@ -370,14 +362,11 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             form = new Form("form", new Item[] { getStringItem() });//GEN-BEGIN:|56-getter|1|56-postInit
             form.addCommand(getBackCommand());
             form.setCommandListener(this);//GEN-END:|56-getter|1|56-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|56-getter|2|
         return form;
     }
     //</editor-fold>//GEN-END:|56-getter|2|
-
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|65-getter|0|65-preInit
     /**
      * Returns an initiliazed instance of stringItem component.
@@ -387,7 +376,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (stringItem == null) {//GEN-END:|65-getter|0|65-preInit
             // write pre-init user code here
             stringItem = new StringItem("Help", "\n\nThis is a game o life. Pink life. Your task is to take care of little creature. Whether the creature will be happy is up to you! ;-)\n\nHow you can do it?\nFeed it, play with him, tidy after him ;-)\nAt any time you can see how happy your little creature is!\nGood luck!:)");//GEN-LINE:|65-getter|1|65-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|65-getter|2|
         return stringItem;
     }
@@ -400,12 +389,9 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void loadingFailed() {//GEN-END:|69-entry|0|70-preAction
         // write pre-action user code here
         switchDisplayable(null, getAlert());//GEN-LINE:|69-entry|1|70-postAction
-        // write post-action user code here
+    // write post-action user code here
     }//GEN-BEGIN:|69-entry|2|
     //</editor-fold>//GEN-END:|69-entry|2|
-
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert ">//GEN-BEGIN:|75-getter|0|75-preInit
     /**
      * Returns an initiliazed instance of alert component.
@@ -418,7 +404,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             alert.addCommand(getBackCommand());
             alert.setCommandListener(this);
             alert.setTimeout(Alert.FOREVER);//GEN-END:|75-getter|1|75-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|75-getter|2|
         return alert;
     }
@@ -436,7 +422,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             CreatureNameTextBox.addCommand(getBackCommand());
             CreatureNameTextBox.addCommand(getOkCommand());
             CreatureNameTextBox.setCommandListener(this);//GEN-END:|82-getter|1|82-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|82-getter|2|
         return CreatureNameTextBox;
     }
@@ -451,7 +437,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (okCommand == null) {//GEN-END:|86-getter|0|86-preInit
             // write pre-init user code here
             okCommand = new Command("Ok", Command.OK, 0);//GEN-LINE:|86-getter|1|86-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|86-getter|2|
         return okCommand;
     }
@@ -466,7 +452,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (drinkCommand == null) {//GEN-END:|96-getter|0|96-preInit
             // write pre-init user code here
             drinkCommand = new Command("Give sth to drink!", Command.SCREEN, 0);//GEN-LINE:|96-getter|1|96-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|96-getter|2|
         return drinkCommand;
     }
@@ -481,7 +467,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (playCommand == null) {//GEN-END:|98-getter|0|98-preInit
             // write pre-init user code here
             playCommand = new Command("Play!;-)", Command.SCREEN, 0);//GEN-LINE:|98-getter|1|98-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|98-getter|2|
         return playCommand;
     }
@@ -502,7 +488,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             listOfFoods.append("Ice cream", null);
             listOfFoods.setCommandListener(this);
             listOfFoods.setSelectedFlags(new boolean[] { false, false, false, false });//GEN-END:|104-getter|1|104-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|104-getter|2|
         return listOfFoods;
     }
@@ -517,24 +503,24 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfFoods().getString(getListOfFoods().getSelectedIndex());//GEN-BEGIN:|104-action|1|108-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Orange")) {//GEN-END:|104-action|1|108-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|104-action|2|108-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Pineapple")) {//GEN-LINE:|104-action|3|109-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|104-action|4|109-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Peach")) {//GEN-LINE:|104-action|5|110-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|104-action|6|110-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Ice cream")) {//GEN-LINE:|104-action|7|111-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|104-action|8|111-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|104-action|9|104-postAction
         }//GEN-END:|104-action|9|104-postAction
-        // enter post-action user code here
+    // enter post-action user code here
     }//GEN-BEGIN:|104-action|10|
     //</editor-fold>//GEN-END:|104-action|10|
 
@@ -552,7 +538,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             listOfDrinks.append("Coca cola", null);
             listOfDrinks.setCommandListener(this);
             listOfDrinks.setSelectedFlags(new boolean[] { false, false, false });//GEN-END:|116-getter|1|116-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|116-getter|2|
         return listOfDrinks;
     }
@@ -567,34 +553,27 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfDrinks().getString(getListOfDrinks().getSelectedIndex());//GEN-BEGIN:|116-action|1|119-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Milk")) {//GEN-END:|116-action|1|119-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|116-action|2|119-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Orange juice")) {//GEN-LINE:|116-action|3|120-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|116-action|4|120-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (__selectedString.equals("Coca cola")) {//GEN-LINE:|116-action|5|121-preAction
-                // write pre-action user code here
+            // write pre-action user code here
 //GEN-LINE:|116-action|6|121-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|116-action|7|116-postAction
         }//GEN-END:|116-action|7|116-postAction
-        // enter post-action user code here
+    // enter post-action user code here
     }//GEN-BEGIN:|116-action|8|
     //</editor-fold>//GEN-END:|116-action|8|
-
-
-
-
-
-
-
     /**
      * Returns a display instance.
      * @return the display instance.
      */
-    public Display getDisplay () {
+    public Display getDisplay() {
         return Display.getDisplay(this);
     }
 
@@ -602,7 +581,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      * Exits MIDlet.
      */
     public void exitMIDlet() {
-        switchDisplayable (null, null);
+        switchDisplayable(null, null);
         destroyApp(true);
         notifyDestroyed();
     }
@@ -613,10 +592,10 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void startApp() {
         if (midletPaused) {
-            resumeMIDlet ();
+            resumeMIDlet();
         } else {
-            initialize ();
-            startMIDlet ();
+            initialize();
+            startMIDlet();
         }
         midletPaused = false;
     }
@@ -634,5 +613,4 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void destroyApp(boolean unconditional) {
     }
-
 }

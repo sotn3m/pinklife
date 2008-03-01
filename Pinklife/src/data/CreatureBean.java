@@ -23,6 +23,11 @@ public class CreatureBean {
     private int playLevel;
     private int tireLevel; // sleeping/turning light off
     
+    public CreatureBean() throws Exception {
+        if(!load())
+            throw new Exception("Loading failed");            
+    }
+    
     public CreatureBean(String sName, int happiness, int illness, int size, int foodLevel, int waterLevel, int dirtyLevel, int messLevel, int playLevel, int tireLevel) {
         this.sName = sName;
         this.happiness = happiness;
