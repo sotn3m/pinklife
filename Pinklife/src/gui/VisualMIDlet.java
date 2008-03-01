@@ -27,13 +27,23 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private TextBox CreatureNameTextBox;
     private List listOfFoods;
     private List listOfDrinks;
+    private List actionList;
+    private Form creatureStatsWindow;
+    private StringItem stringItem1;
+    private StringItem stringItem2;
+    private StringItem stringItem3;
+    private StringItem stringItem7;
+    private StringItem stringItem6;
+    private StringItem stringItem5;
+    private StringItem stringItem4;
+    private StringItem stringItem10;
+    private StringItem stringItem9;
+    private StringItem stringItem8;
     private Command exitCommand;
-    private Command feedCommand;
-    private Command tidyCommand;
     private Command backCommand;
     private Command okCommand;
-    private Command playCommand;
-    private Command drinkCommand;
+    private Command statsCommand;
+    private Command actionCommand;
     //</editor-fold>//GEN-END:|fields|0|
     /**
      * The VisualMIDlet constructor.
@@ -53,7 +63,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private void load() {
         try {
             creature = new CreatureBean();
-            
+
             getGameCanvas().assignCreature(creature);
             returnToGameScreen();
         } catch (Exception ex) {
@@ -144,10 +154,8 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             gameCanvas = new GameCanvas();//GEN-BEGIN:|13-getter|1|13-postInit
             gameCanvas.setTitle("gameCanvas");
             gameCanvas.addCommand(getExitCommand());
-            gameCanvas.addCommand(getFeedCommand());
-            gameCanvas.addCommand(getTidyCommand());
-            gameCanvas.addCommand(getDrinkCommand());
-            gameCanvas.addCommand(getPlayCommand());
+            gameCanvas.addCommand(getStatsCommand());
+            gameCanvas.addCommand(getActionCommand());
             gameCanvas.setCommandListener(this);//GEN-END:|13-getter|1|13-postInit
         // write post-init user code here
         }//GEN-BEGIN:|13-getter|2|
@@ -172,39 +180,52 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 create();//GEN-LINE:|7-commandAction|4|87-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|80-preAction
+            }//GEN-BEGIN:|7-commandAction|5|142-preAction
+        } else if (displayable == actionList) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|5|142-preAction
+                // write pre-action user code here
+                actionListAction();//GEN-LINE:|7-commandAction|6|142-postAction
+            // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|7|80-preAction
         } else if (displayable == alert) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|5|80-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|7|80-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|6|80-postAction
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|8|80-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|62-preAction
+            }//GEN-BEGIN:|7-commandAction|9|154-preAction
+        } else if (displayable == creatureStatsWindow) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|9|154-preAction
+                // write pre-action user code here
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|10|154-postAction
+                stringItem1=null;
+                stringItem2=null;
+                stringItem3=null;
+                stringItem4=null;
+                stringItem5=null;
+                stringItem6=null;
+                stringItem7=null;
+                stringItem8=null;
+                stringItem9=null;
+                stringItem10=null;                              
+            }//GEN-BEGIN:|7-commandAction|11|62-preAction
         } else if (displayable == form) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|7|62-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|11|62-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|62-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|12|62-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|97-preAction
+            }//GEN-BEGIN:|7-commandAction|13|140-preAction
         } else if (displayable == gameCanvas) {
-            if (command == drinkCommand) {//GEN-END:|7-commandAction|9|97-preAction
+            if (command == actionCommand) {//GEN-END:|7-commandAction|13|140-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getListOfDrinks());//GEN-LINE:|7-commandAction|10|97-postAction
+                switchDisplayable(null, getActionList());//GEN-LINE:|7-commandAction|14|140-postAction
             // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|11|22-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|15|22-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|12|22-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|16|22-postAction
             // write post-action user code here
-            } else if (command == feedCommand) {//GEN-LINE:|7-commandAction|13|90-preAction
+            } else if (command == statsCommand) {//GEN-LINE:|7-commandAction|17|138-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getListOfFoods());//GEN-LINE:|7-commandAction|14|90-postAction
-            // write post-action user code here
-            } else if (command == playCommand) {//GEN-LINE:|7-commandAction|15|99-preAction
-                // write pre-action user code here
-                creature.play();//GEN-LINE:|7-commandAction|16|99-postAction
-            // write post-action user code here
-            } else if (command == tidyCommand) {//GEN-LINE:|7-commandAction|17|91-preAction
-                // write pre-action user code here
-                creature.tidy();//GEN-LINE:|7-commandAction|18|91-postAction
+                switchDisplayable(null, getCreatureStatsWindow());//GEN-LINE:|7-commandAction|18|138-postAction
             // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|19|35-preAction
         } else if (displayable == list) {
@@ -235,6 +256,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         
     }//GEN-BEGIN:|7-commandAction|28|
     //</editor-fold>//GEN-END:|7-commandAction|28|
+
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
     /**
      * Returns an initiliazed instance of exitCommand component.
@@ -249,37 +271,6 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return exitCommand;
     }
     //</editor-fold>//GEN-END:|21-getter|2|
-
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: feedCommand ">//GEN-BEGIN:|24-getter|0|24-preInit
-    /**
-     * Returns an initiliazed instance of feedCommand component.
-     * @return the initialized component instance
-     */
-    public Command getFeedCommand() {
-        if (feedCommand == null) {//GEN-END:|24-getter|0|24-preInit
-            // write pre-init user code here
-            feedCommand = new Command("Feed it!", "Feed it!", Command.SCREEN, 0);//GEN-LINE:|24-getter|1|24-postInit
-        // write post-init user code here
-        }//GEN-BEGIN:|24-getter|2|
-        return feedCommand;
-    }
-    //</editor-fold>//GEN-END:|24-getter|2|
-
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: tidyCommand ">//GEN-BEGIN:|26-getter|0|26-preInit
-    /**
-     * Returns an initiliazed instance of tidyCommand component.
-     * @return the initialized component instance
-     */
-    public Command getTidyCommand() {
-        if (tidyCommand == null) {//GEN-END:|26-getter|0|26-preInit
-            // write pre-init user code here
-            tidyCommand = new Command("Tidy him/his room!", Command.SCREEN, 0);//GEN-LINE:|26-getter|1|26-postInit
-        // write post-init user code here
-        }//GEN-BEGIN:|26-getter|2|
-        return tidyCommand;
-    }
-    //</editor-fold>//GEN-END:|26-getter|2|
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Method: returnToGameScreen ">//GEN-BEGIN:|30-entry|0|31-preAction
     /**
      * Performs an action assigned to the returnToGameScreen entry-point.
@@ -287,7 +278,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void returnToGameScreen() {//GEN-END:|30-entry|0|31-preAction
         // write pre-action user code here
         switchDisplayable(null, getGameCanvas());//GEN-LINE:|30-entry|1|31-postAction
-    // write post-action user code here
+    getGameCanvas().repaint();
     }//GEN-BEGIN:|30-entry|2|
     //</editor-fold>//GEN-END:|30-entry|2|
 
@@ -443,37 +434,6 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return okCommand;
     }
     //</editor-fold>//GEN-END:|86-getter|2|
-
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: drinkCommand ">//GEN-BEGIN:|96-getter|0|96-preInit
-    /**
-     * Returns an initiliazed instance of drinkCommand component.
-     * @return the initialized component instance
-     */
-    public Command getDrinkCommand() {
-        if (drinkCommand == null) {//GEN-END:|96-getter|0|96-preInit
-            // write pre-init user code here
-            drinkCommand = new Command("Give sth to drink!", Command.SCREEN, 0);//GEN-LINE:|96-getter|1|96-postInit
-        // write post-init user code here
-        }//GEN-BEGIN:|96-getter|2|
-        return drinkCommand;
-    }
-    //</editor-fold>//GEN-END:|96-getter|2|
-
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: playCommand ">//GEN-BEGIN:|98-getter|0|98-preInit
-    /**
-     * Returns an initiliazed instance of playCommand component.
-     * @return the initialized component instance
-     */
-    public Command getPlayCommand() {
-        if (playCommand == null) {//GEN-END:|98-getter|0|98-preInit
-            // write pre-init user code here
-            playCommand = new Command("Play!;-)", Command.SCREEN, 0);//GEN-LINE:|98-getter|1|98-postInit
-        // write post-init user code here
-        }//GEN-BEGIN:|98-getter|2|
-        return playCommand;
-    }
-    //</editor-fold>//GEN-END:|98-getter|2|
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: listOfFoods ">//GEN-BEGIN:|104-getter|0|104-preInit
     /**
      * Returns an initiliazed instance of listOfFoods component.
@@ -504,24 +464,24 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfFoods().getString(getListOfFoods().getSelectedIndex());//GEN-BEGIN:|104-action|1|108-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Orange")) {//GEN-END:|104-action|1|108-preAction
-            // write pre-action user code here
+            creature.eatOrange();
 //GEN-LINE:|104-action|2|108-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Pineapple")) {//GEN-LINE:|104-action|3|109-preAction
-            // write pre-action user code here
+            creature.eatPineapple();
 //GEN-LINE:|104-action|4|109-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Peach")) {//GEN-LINE:|104-action|5|110-preAction
-            // write pre-action user code here
+            creature.eatPeach();
 //GEN-LINE:|104-action|6|110-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Ice cream")) {//GEN-LINE:|104-action|7|111-preAction
-            // write pre-action user code here
+            creature.eatIceCream();
 //GEN-LINE:|104-action|8|111-postAction
             // write post-action user code here
             }//GEN-BEGIN:|104-action|9|104-postAction
         }//GEN-END:|104-action|9|104-postAction
-    returnToGameScreen();
+        returnToGameScreen();
     }//GEN-BEGIN:|104-action|10|
     //</editor-fold>//GEN-END:|104-action|10|
 
@@ -554,22 +514,269 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfDrinks().getString(getListOfDrinks().getSelectedIndex());//GEN-BEGIN:|116-action|1|119-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Milk")) {//GEN-END:|116-action|1|119-preAction
-            // write pre-action user code here
+            creature.drinkMilk();
 //GEN-LINE:|116-action|2|119-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Orange juice")) {//GEN-LINE:|116-action|3|120-preAction
-            // write pre-action user code here
+            creature.drinkOrangeJuice();
 //GEN-LINE:|116-action|4|120-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Coca cola")) {//GEN-LINE:|116-action|5|121-preAction
-            // write pre-action user code here
+            creature.drinkCocaCola();
 //GEN-LINE:|116-action|6|121-postAction
             // write post-action user code here
             }//GEN-BEGIN:|116-action|7|116-postAction
         }//GEN-END:|116-action|7|116-postAction
-    returnToGameScreen();
+        returnToGameScreen();
     }//GEN-BEGIN:|116-action|8|
     //</editor-fold>//GEN-END:|116-action|8|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: statsCommand ">//GEN-BEGIN:|137-getter|0|137-preInit
+    /**
+     * Returns an initiliazed instance of statsCommand component.
+     * @return the initialized component instance
+     */
+    public Command getStatsCommand() {
+        if (statsCommand == null) {//GEN-END:|137-getter|0|137-preInit
+            // write pre-init user code here
+            statsCommand = new Command("Creature statistics", Command.SCREEN, 0);//GEN-LINE:|137-getter|1|137-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|137-getter|2|
+        return statsCommand;
+    }
+    //</editor-fold>//GEN-END:|137-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: actionList ">//GEN-BEGIN:|141-getter|0|141-preInit
+    /**
+     * Returns an initiliazed instance of actionList component.
+     * @return the initialized component instance
+     */
+    public List getActionList() {
+        if (actionList == null) {//GEN-END:|141-getter|0|141-preInit
+            // write pre-init user code here
+            actionList = new List("Action List", Choice.IMPLICIT);//GEN-BEGIN:|141-getter|1|141-postInit
+            actionList.append("feed", null);
+            actionList.append("drink", null);
+            actionList.append("tidy", null);
+            actionList.append("play", null);
+            actionList.setCommandListener(this);
+            actionList.setSelectedFlags(new boolean[] { false, false, false, false });//GEN-END:|141-getter|1|141-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|141-getter|2|
+        return actionList;
+    }
+    //</editor-fold>//GEN-END:|141-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: actionListAction ">//GEN-BEGIN:|141-action|0|141-preAction
+    /**
+     * Performs an action assigned to the selected list element in the actionList component.
+     */
+    public void actionListAction() {//GEN-END:|141-action|0|141-preAction
+        // enter pre-action user code here
+        String __selectedString = getActionList().getString(getActionList().getSelectedIndex());//GEN-BEGIN:|141-action|1|145-preAction
+        if (__selectedString != null) {
+            if (__selectedString.equals("feed")) {//GEN-END:|141-action|1|145-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getListOfFoods());//GEN-LINE:|141-action|2|145-postAction
+            // write post-action user code here
+            } else if (__selectedString.equals("drink")) {//GEN-LINE:|141-action|3|147-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getListOfDrinks());//GEN-LINE:|141-action|4|147-postAction
+            // write post-action user code here
+            } else if (__selectedString.equals("tidy")) {//GEN-LINE:|141-action|5|149-preAction
+                // write pre-action user code here
+                creature.tidy();//GEN-LINE:|141-action|6|149-postAction
+            // write post-action user code here
+            } else if (__selectedString.equals("play")) {//GEN-LINE:|141-action|7|151-preAction
+                // write pre-action user code here
+                creature.play();//GEN-LINE:|141-action|8|151-postAction
+            // write post-action user code here
+            }//GEN-BEGIN:|141-action|9|141-postAction
+        }//GEN-END:|141-action|9|141-postAction
+    // enter post-action user code here
+    }//GEN-BEGIN:|141-action|10|
+    //</editor-fold>//GEN-END:|141-action|10|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: actionCommand ">//GEN-BEGIN:|139-getter|0|139-preInit
+    /**
+     * Returns an initiliazed instance of actionCommand component.
+     * @return the initialized component instance
+     */
+    public Command getActionCommand() {
+        if (actionCommand == null) {//GEN-END:|139-getter|0|139-preInit
+            // write pre-init user code here
+            actionCommand = new Command("Do sth!", Command.SCREEN, 0);//GEN-LINE:|139-getter|1|139-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|139-getter|2|
+        return actionCommand;
+    }
+    //</editor-fold>//GEN-END:|139-getter|2|
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: creatureStatsWindow ">//GEN-BEGIN:|153-getter|0|153-preInit
+    /**
+     * Returns an initiliazed instance of creatureStatsWindow component.
+     * @return the initialized component instance
+     */
+    public Form getCreatureStatsWindow() {
+        if (creatureStatsWindow == null) {//GEN-END:|153-getter|0|153-preInit
+            // write pre-init user code here
+            creatureStatsWindow = new Form("Creature state", new Item[] { getStringItem9(), getStringItem10(), getStringItem7(), getStringItem1(), getStringItem2(), getStringItem3(), getStringItem4(), getStringItem5(), getStringItem6(), getStringItem8() });//GEN-BEGIN:|153-getter|1|153-postInit
+            creatureStatsWindow.addCommand(getBackCommand());
+            creatureStatsWindow.setCommandListener(this);//GEN-END:|153-getter|1|153-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|153-getter|2|
+        return creatureStatsWindow;
+    }
+    //</editor-fold>//GEN-END:|153-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem1 ">//GEN-BEGIN:|157-getter|0|157-preInit
+    /**
+     * Returns an initiliazed instance of stringItem1 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem1() {
+        if (stringItem1 == null) {//GEN-END:|157-getter|0|157-preInit
+            // write pre-init user code here
+            stringItem1 = new StringItem("Food:", creature.getTextFoodLevel());//GEN-LINE:|157-getter|1|157-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|157-getter|2|
+        return stringItem1;
+    }
+    //</editor-fold>//GEN-END:|157-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem2 ">//GEN-BEGIN:|158-getter|0|158-preInit
+    /**
+     * Returns an initiliazed instance of stringItem2 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem2() {
+        if (stringItem2 == null) {//GEN-END:|158-getter|0|158-preInit
+            // write pre-init user code here
+            stringItem2 = new StringItem("Drink:", creature.getTextWaterLevel());//GEN-LINE:|158-getter|1|158-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|158-getter|2|
+        return stringItem2;
+    }
+    //</editor-fold>//GEN-END:|158-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem3 ">//GEN-BEGIN:|159-getter|0|159-preInit
+    /**
+     * Returns an initiliazed instance of stringItem3 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem3() {
+        if (stringItem3 == null) {//GEN-END:|159-getter|0|159-preInit
+            // write pre-init user code here
+            stringItem3 = new StringItem("Entertainment:", creature.getTextPlayLevel());//GEN-LINE:|159-getter|1|159-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|159-getter|2|
+        return stringItem3;
+    }
+    //</editor-fold>//GEN-END:|159-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem4 ">//GEN-BEGIN:|160-getter|0|160-preInit
+    /**
+     * Returns an initiliazed instance of stringItem4 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem4() {
+        if (stringItem4 == null) {//GEN-END:|160-getter|0|160-preInit
+            // write pre-init user code here
+            stringItem4 = new StringItem("Creature dirtiness:", creature.getTextDirtyLevel());//GEN-LINE:|160-getter|1|160-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|160-getter|2|
+        return stringItem4;
+    }
+    //</editor-fold>//GEN-END:|160-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem5 ">//GEN-BEGIN:|161-getter|0|161-preInit
+    /**
+     * Returns an initiliazed instance of stringItem5 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem5() {
+        if (stringItem5 == null) {//GEN-END:|161-getter|0|161-preInit
+            // write pre-init user code here
+            stringItem5 = new StringItem("Room order:", creature.getTextMessLevel());//GEN-LINE:|161-getter|1|161-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|161-getter|2|
+        return stringItem5;
+    }
+    //</editor-fold>//GEN-END:|161-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem6 ">//GEN-BEGIN:|162-getter|0|162-preInit
+    /**
+     * Returns an initiliazed instance of stringItem6 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem6() {
+        if (stringItem6 == null) {//GEN-END:|162-getter|0|162-preInit
+            // write pre-init user code here
+            stringItem6 = new StringItem("Sleepiness:", creature.getTextTireLevel());//GEN-LINE:|162-getter|1|162-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|162-getter|2|
+        return stringItem6;
+    }
+    //</editor-fold>//GEN-END:|162-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem7 ">//GEN-BEGIN:|163-getter|0|163-preInit
+    /**
+     * Returns an initiliazed instance of stringItem7 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem7() {
+        if (stringItem7 == null) {//GEN-END:|163-getter|0|163-preInit
+            // write pre-init user code here
+            stringItem7 = new StringItem("Happiness:", creature.getTextHappiness());//GEN-LINE:|163-getter|1|163-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|163-getter|2|
+        return stringItem7;
+    }
+    //</editor-fold>//GEN-END:|163-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem8 ">//GEN-BEGIN:|164-getter|0|164-preInit
+    /**
+     * Returns an initiliazed instance of stringItem8 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem8() {
+        if (stringItem8 == null) {//GEN-END:|164-getter|0|164-preInit
+            // write pre-init user code here
+            stringItem8 = new StringItem("Ill/healthy:", creature.getTextIllness());//GEN-LINE:|164-getter|1|164-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|164-getter|2|
+        return stringItem8;
+    }
+    //</editor-fold>//GEN-END:|164-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem9 ">//GEN-BEGIN:|165-getter|0|165-preInit
+    /**
+     * Returns an initiliazed instance of stringItem9 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem9() {
+        if (stringItem9 == null) {//GEN-END:|165-getter|0|165-preInit
+            // write pre-init user code here
+            stringItem9 = new StringItem("Name:", creature.getName());//GEN-LINE:|165-getter|1|165-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|165-getter|2|
+        return stringItem9;
+    }
+    //</editor-fold>//GEN-END:|165-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem10 ">//GEN-BEGIN:|166-getter|0|166-preInit
+    /**
+     * Returns an initiliazed instance of stringItem10 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem10() {
+        if (stringItem10 == null) {//GEN-END:|166-getter|0|166-preInit
+            // write pre-init user code here
+            stringItem10 = new StringItem("Size", creature.getTextSize());//GEN-LINE:|166-getter|1|166-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|166-getter|2|
+        return stringItem10;
+    }
+    //</editor-fold>//GEN-END:|166-getter|2|
     /**
      * Returns a display instance.
      * @return the display instance.
