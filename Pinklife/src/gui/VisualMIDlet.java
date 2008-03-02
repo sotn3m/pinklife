@@ -471,7 +471,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      * Performs an action assigned to the selected list element in the listOfFoods component.
      */
     public void listOfFoodsAction() {//GEN-END:|104-action|0|104-preAction
-        // enter pre-action user code here
+        // pre-action
         String __selectedString = getListOfFoods().getString(getListOfFoods().getSelectedIndex());//GEN-BEGIN:|104-action|1|108-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Orange")) {//GEN-END:|104-action|1|108-preAction
@@ -597,14 +597,14 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             } else if (__selectedString.equals("tidy")) {//GEN-LINE:|141-action|5|149-preAction
                 // write pre-action user code here
                 creature.tidy();//GEN-LINE:|141-action|6|149-postAction
-            // write post-action user code here
+                returnToGameScreen();
             } else if (__selectedString.equals("play")) {//GEN-LINE:|141-action|7|151-preAction
                 // write pre-action user code here
                 creature.play();//GEN-LINE:|141-action|8|151-postAction
-            // write post-action user code here
+                returnToGameScreen();
             }//GEN-BEGIN:|141-action|9|141-postAction
         }//GEN-END:|141-action|9|141-postAction
-    // enter post-action user code here
+    // post-action
     }//GEN-BEGIN:|141-action|10|
     //</editor-fold>//GEN-END:|141-action|10|
 
