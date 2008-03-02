@@ -6,6 +6,7 @@ package data;
  */
 public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourInterface {
         
+    //<editor-fold defaultstate="collapsed" desc="Contructors and debug method">
     public CreatureBean() throws Exception {
         if (!load()) {
             throw new Exception("Loading failed");
@@ -41,7 +42,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         System.out.println("Illness: "+getIllness());
         System.out.println("--------");        
     }
-
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="User actions...">
     public void eatOrange() {
@@ -173,9 +174,9 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextWaterLevel() {
-        if(getFoodLevel()<50)
+        if(getWaterLevel()<50)
             return "little thirsty";
-        else if(getFoodLevel()<0)
+        else if(getWaterLevel()<0)
             return "thirsty";
         return "ok";
     }
@@ -187,9 +188,9 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextMessLevel() {
-        if(getFoodLevel()>500)
+        if(getMessLevel()>500)
             return "total mess";
-        else if(getFoodLevel()>200)
+        else if(getMessLevel()>200)
             return "mess";
         return "order";
     }
@@ -209,19 +210,17 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextSize() {
-        switch(size)
-        {
-            case 1: return "small";
-            case 2: return "medium";
-            case 3: return "large";
-        }
+        if(getSize()<300)
+            return "small";
+        else if(getSize()<1000)
+            return "medium";
         return "large";
     }
 
     public String getTextTireLevel() {
-        if(getDirtyLevel()>100)
+        if(getTireLevel()>100)
             return "Well-rested";
-        else if(getDirtyLevel()>0)
+        else if(getTireLevel()>0)
             return "rested";
         return "sleepy";
     }
