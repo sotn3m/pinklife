@@ -9,6 +9,8 @@ import javax.microedition.lcdui.*;
 public class GameCanvas extends Canvas implements CommandListener {
 
     private CreatureBehaviourInterface creature;
+    private boolean lights; //true -> on, false -> off
+    private boolean sleeping; //true -> sleeping, false -> not sleeping
 
     /**
      * constructor
@@ -26,19 +28,42 @@ public class GameCanvas extends Canvas implements CommandListener {
         this.creature = creature;
     }
 
+    public void setLight(boolean light) {
+        lights = light;
+    }
+
+    public void setSleeping(boolean sleep) {
+        sleeping = sleep;
+    }
+
     /**
      * paint
      */
     public void paint(Graphics g) {
-        g.setColor(255, 255, 255);
+
+        if (lights) {
+            g.setColor(255, 255, 255);
+        } else {
+            g.setColor(0, 0, 0);
+        }
         g.fillRect(0, 0, getWidth(), getHeight());
+
+
         g.setColor(255, 0, 255);
         g.drawString(creature.getTextFoodLevel(), 0, 0, Graphics.TOP | Graphics.LEFT);
-        g.drawString(creature.getTextWaterLevel(), 0, 20, Graphics.TOP | Graphics.LEFT);
-        g.drawString(creature.getTextDirtyLevel(), 0, 40, Graphics.TOP | Graphics.LEFT);
-        g.drawString(creature.getTextMessLevel(), 0, 60, Graphics.TOP | Graphics.LEFT);
-        g.drawString(creature.getTextTireLevel(), 0, 80, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextWaterLevel(), 0, 10, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextDirtyLevel(), 0, 20, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextMessLevel(), 0, 30, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextTireLevel(), 0, 40, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextPlayLevel(), 0, 50, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextHappiness(), 0, 60, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextSize(), 0, 70, Graphics.TOP | Graphics.LEFT);
+        g.drawString(creature.getTextIllness(), 0, 80, Graphics.TOP | Graphics.LEFT);
         
+        if(sleeping)
+            g.drawString("Sleeping", 0, 100, Graphics.TOP | Graphics.LEFT);
+        else
+            g.drawString("No sleeping", 0, 100, Graphics.TOP | Graphics.LEFT);
     }
 
     /**

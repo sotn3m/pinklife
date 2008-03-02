@@ -166,7 +166,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextFoodLevel() {
-        if(getFoodLevel()<50)
+        if(getFoodLevel()<50 && getFoodLevel()>=0)
             return "little hunger";
         else if(getFoodLevel()<0)
             return "hungry";
@@ -174,7 +174,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextWaterLevel() {
-        if(getWaterLevel()<50)
+        if(getWaterLevel()<50 && getWaterLevel()>=0)
             return "little thirsty";
         else if(getWaterLevel()<0)
             return "thirsty";
@@ -202,7 +202,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public String getTextPlayLevel() {
-        if(getPlayLevel()<100)
+        if(getPlayLevel()<100 && getPlayLevel()>=0)
             return "I want to play with you!:)";
         else if(getPlayLevel()<0)
             return "Total bored";

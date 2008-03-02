@@ -16,6 +16,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
 
     private boolean midletPaused = false;
     private CreatureBehaviourInterface creature;
+    private MainThread thread;
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private java.util.Hashtable __previousDisplayables = new java.util.Hashtable();
@@ -40,11 +41,13 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private StringItem stringItem9;
     private StringItem stringItem8;
     private Alert saveGame;
+    private List listActionSleeping;
     private Command exitCommand;
     private Command backCommand;
     private Command okCommand;
     private Command statsCommand;
     private Command actionCommand;
+    private Command noCommand;
     //</editor-fold>//GEN-END:|fields|0|
     /**
      * The VisualMIDlet constructor.
@@ -66,6 +69,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             creature = new CreatureBean();
 
             getGameCanvas().assignCreature(creature);
+
+            if (thread == null) {
+                thread = new MainThread(creature, getGameCanvas());
+                thread.start();
+            } else {
+                thread.setCanvas(getGameCanvas());
+                thread.setCreature(creature);
+            }
+
             returnToGameScreen();
         } catch (Exception ex) {
             loadingFailed();
@@ -187,86 +199,104 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 actionListAction();//GEN-LINE:|7-commandAction|6|142-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|80-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|7|212-preAction
+                // write pre-action user code here
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|212-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|9|80-preAction
         } else if (displayable == alert) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|7|80-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|9|80-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|80-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|10|80-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|154-preAction
+            }//GEN-BEGIN:|7-commandAction|11|154-preAction
         } else if (displayable == creatureStatsWindow) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|9|154-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|11|154-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|10|154-postAction
-                stringItem1=null;
-                stringItem2=null;
-                stringItem3=null;
-                stringItem4=null;
-                stringItem5=null;
-                stringItem6=null;
-                stringItem7=null;
-                stringItem8=null;
-                stringItem9=null;
-                stringItem10=null;                              
-            }//GEN-BEGIN:|7-commandAction|11|62-preAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|12|154-postAction
+                stringItem1 = null;
+                stringItem2 = null;
+                stringItem3 = null;
+                stringItem4 = null;
+                stringItem5 = null;
+                stringItem6 = null;
+                stringItem7 = null;
+                stringItem8 = null;
+                stringItem9 = null;
+                stringItem10 = null;                              
+            }//GEN-BEGIN:|7-commandAction|13|62-preAction
         } else if (displayable == form) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|11|62-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|13|62-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|12|62-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|14|62-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|140-preAction
+            }//GEN-BEGIN:|7-commandAction|15|140-preAction
         } else if (displayable == gameCanvas) {
-            if (command == actionCommand) {//GEN-END:|7-commandAction|13|140-preAction
+            if (command == actionCommand) {//GEN-END:|7-commandAction|15|140-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getActionList());//GEN-LINE:|7-commandAction|14|140-postAction
+                isSleeping();//GEN-LINE:|7-commandAction|16|140-postAction
             // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|15|22-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|17|22-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getSaveGame());//GEN-LINE:|7-commandAction|16|22-postAction
+                switchDisplayable(null, getSaveGame());//GEN-LINE:|7-commandAction|18|22-postAction
             // write post-action user code here
-            } else if (command == statsCommand) {//GEN-LINE:|7-commandAction|17|138-preAction
+            } else if (command == statsCommand) {//GEN-LINE:|7-commandAction|19|138-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getCreatureStatsWindow());//GEN-LINE:|7-commandAction|18|138-postAction
+                switchDisplayable(null, getCreatureStatsWindow());//GEN-LINE:|7-commandAction|20|138-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|35-preAction
+            }//GEN-BEGIN:|7-commandAction|21|35-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|19|35-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|21|35-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|20|35-postAction
+                listAction();//GEN-LINE:|7-commandAction|22|35-postAction
             // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|21|60-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|23|60-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|22|60-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|24|60-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|117-preAction
+            }//GEN-BEGIN:|7-commandAction|25|200-preAction
+        } else if (displayable == listActionSleeping) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|25|200-preAction
+                // write pre-action user code here
+                listActionSleepingAction();//GEN-LINE:|7-commandAction|26|200-postAction
+                // write post-action user code here
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|27|214-preAction
+                // write pre-action user code here
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|28|214-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|29|117-preAction
         } else if (displayable == listOfDrinks) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|23|117-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|29|117-preAction
                 // write pre-action user code here
-                listOfDrinksAction();//GEN-LINE:|7-commandAction|24|117-postAction
+                listOfDrinksAction();//GEN-LINE:|7-commandAction|30|117-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|25|105-preAction
+            }//GEN-BEGIN:|7-commandAction|31|105-preAction
         } else if (displayable == listOfFoods) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|25|105-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|31|105-preAction
                 // write pre-action user code here
-                listOfFoodsAction();//GEN-LINE:|7-commandAction|26|105-postAction
+                listOfFoodsAction();//GEN-LINE:|7-commandAction|32|105-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|27|171-preAction
+            }//GEN-BEGIN:|7-commandAction|33|171-preAction
         } else if (displayable == saveGame) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|27|171-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|33|171-preAction
                 // write pre-action user code here
-                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|28|171-postAction
-                // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|29|170-preAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|34|171-postAction
+            // write post-action user code here
+            } else if (command == noCommand) {//GEN-LINE:|7-commandAction|35|185-preAction
+                // write pre-action user code here
+                exitMIDlet();//GEN-LINE:|7-commandAction|36|185-postAction
+            // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|37|170-preAction
                 creature.save();
-                exitMIDlet();//GEN-LINE:|7-commandAction|30|170-postAction
-                // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|31|7-postCommandAction
-        }//GEN-END:|7-commandAction|31|7-postCommandAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|38|170-postAction
+            // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|39|7-postCommandAction
+        }//GEN-END:|7-commandAction|39|7-postCommandAction
 
         getGameCanvas().repaint();
         
-    }//GEN-BEGIN:|7-commandAction|32|
-    //</editor-fold>//GEN-END:|7-commandAction|32|
+    }//GEN-BEGIN:|7-commandAction|40|
+    //</editor-fold>//GEN-END:|7-commandAction|40|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
     /**
@@ -289,7 +319,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     public void returnToGameScreen() {//GEN-END:|30-entry|0|31-preAction
         // write pre-action user code here
         switchDisplayable(null, getGameCanvas());//GEN-LINE:|30-entry|1|31-postAction
-    getGameCanvas().repaint();
+        getGameCanvas().repaint();
     }//GEN-BEGIN:|30-entry|2|
     //</editor-fold>//GEN-END:|30-entry|2|
 
@@ -475,19 +505,19 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfFoods().getString(getListOfFoods().getSelectedIndex());//GEN-BEGIN:|104-action|1|108-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Orange")) {//GEN-END:|104-action|1|108-preAction
-            creature.eatOrange();
+                creature.eatOrange();
 //GEN-LINE:|104-action|2|108-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Pineapple")) {//GEN-LINE:|104-action|3|109-preAction
-            creature.eatPineapple();
+                creature.eatPineapple();
 //GEN-LINE:|104-action|4|109-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Peach")) {//GEN-LINE:|104-action|5|110-preAction
-            creature.eatPeach();
+                creature.eatPeach();
 //GEN-LINE:|104-action|6|110-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Ice cream")) {//GEN-LINE:|104-action|7|111-preAction
-            creature.eatIceCream();
+                creature.eatIceCream();
 //GEN-LINE:|104-action|8|111-postAction
             // write post-action user code here
             }//GEN-BEGIN:|104-action|9|104-postAction
@@ -525,15 +555,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfDrinks().getString(getListOfDrinks().getSelectedIndex());//GEN-BEGIN:|116-action|1|119-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Milk")) {//GEN-END:|116-action|1|119-preAction
-            creature.drinkMilk();
+                creature.drinkMilk();
 //GEN-LINE:|116-action|2|119-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Orange juice")) {//GEN-LINE:|116-action|3|120-preAction
-            creature.drinkOrangeJuice();
+                creature.drinkOrangeJuice();
 //GEN-LINE:|116-action|4|120-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Coca cola")) {//GEN-LINE:|116-action|5|121-preAction
-            creature.drinkCocaCola();
+                creature.drinkCocaCola();
 //GEN-LINE:|116-action|6|121-postAction
             // write post-action user code here
             }//GEN-BEGIN:|116-action|7|116-postAction
@@ -568,10 +598,14 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             actionList = new List("Action List", Choice.IMPLICIT);//GEN-BEGIN:|141-getter|1|141-postInit
             actionList.append("feed", null);
             actionList.append("drink", null);
-            actionList.append("tidy", null);
+            actionList.append("tidy room", null);
+            actionList.append("wash creature", null);
             actionList.append("play", null);
+            actionList.append("go to sleep/wake up", null);
+            actionList.append("turn the lights on/off", null);
+            actionList.addCommand(getBackCommand());
             actionList.setCommandListener(this);
-            actionList.setSelectedFlags(new boolean[] { false, false, false, false });//GEN-END:|141-getter|1|141-postInit
+            actionList.setSelectedFlags(new boolean[] { false, false, false, false, false, false, false });//GEN-END:|141-getter|1|141-postInit
         // write post-init user code here
         }//GEN-BEGIN:|141-getter|2|
         return actionList;
@@ -594,19 +628,31 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 switchDisplayable(null, getListOfDrinks());//GEN-LINE:|141-action|4|147-postAction
             // write post-action user code here
-            } else if (__selectedString.equals("tidy")) {//GEN-LINE:|141-action|5|149-preAction
+            } else if (__selectedString.equals("tidy room")) {//GEN-LINE:|141-action|5|149-preAction
                 // write pre-action user code here
                 creature.tidy();//GEN-LINE:|141-action|6|149-postAction
                 returnToGameScreen();
-            } else if (__selectedString.equals("play")) {//GEN-LINE:|141-action|7|151-preAction
+            } else if (__selectedString.equals("wash creature")) {//GEN-LINE:|141-action|7|187-preAction
                 // write pre-action user code here
-                creature.play();//GEN-LINE:|141-action|8|151-postAction
+                creature.washCreature();//GEN-LINE:|141-action|8|187-postAction
                 returnToGameScreen();
-            }//GEN-BEGIN:|141-action|9|141-postAction
-        }//GEN-END:|141-action|9|141-postAction
+            } else if (__selectedString.equals("play")) {//GEN-LINE:|141-action|9|151-preAction
+                // write pre-action user code here
+                creature.play();//GEN-LINE:|141-action|10|151-postAction
+                returnToGameScreen();
+            } else if (__selectedString.equals("go to sleep/wake up")) {//GEN-LINE:|141-action|11|181-preAction
+                // write pre-action user code here
+                thread.switchSleeping();//GEN-LINE:|141-action|12|181-postAction
+                returnToGameScreen();
+            } else if (__selectedString.equals("turn the lights on/off")) {//GEN-LINE:|141-action|13|182-preAction
+                // write pre-action user code here
+                thread.switchLights();//GEN-LINE:|141-action|14|182-postAction
+                returnToGameScreen();
+            }//GEN-BEGIN:|141-action|15|141-postAction
+        }//GEN-END:|141-action|15|141-postAction
     // post-action
-    }//GEN-BEGIN:|141-action|10|
-    //</editor-fold>//GEN-END:|141-action|10|
+    }//GEN-BEGIN:|141-action|16|
+    //</editor-fold>//GEN-END:|141-action|16|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: actionCommand ">//GEN-BEGIN:|139-getter|0|139-preInit
     /**
@@ -799,14 +845,93 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             // write pre-init user code here
             saveGame = new Alert("Save game?");//GEN-BEGIN:|167-getter|1|167-postInit
             saveGame.addCommand(getOkCommand());
+            saveGame.addCommand(getNoCommand());
             saveGame.addCommand(getBackCommand());
             saveGame.setCommandListener(this);
             saveGame.setTimeout(Alert.FOREVER);//GEN-END:|167-getter|1|167-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|167-getter|2|
         return saveGame;
     }
     //</editor-fold>//GEN-END:|167-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: noCommand ">//GEN-BEGIN:|184-getter|0|184-preInit
+    /**
+     * Returns an initiliazed instance of noCommand component.
+     * @return the initialized component instance
+     */
+    public Command getNoCommand() {
+        if (noCommand == null) {//GEN-END:|184-getter|0|184-preInit
+            // write pre-init user code here
+            noCommand = new Command("No", Command.CANCEL, 0);//GEN-LINE:|184-getter|1|184-postInit
+        // write post-init user code here
+        }//GEN-BEGIN:|184-getter|2|
+        return noCommand;
+    }
+    //</editor-fold>//GEN-END:|184-getter|2|
+
+
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: listActionSleeping ">//GEN-BEGIN:|199-getter|0|199-preInit
+    /**
+     * Returns an initiliazed instance of listActionSleeping component.
+     * @return the initialized component instance
+     */
+    public List getListActionSleeping() {
+        if (listActionSleeping == null) {//GEN-END:|199-getter|0|199-preInit
+            // write pre-init user code here
+            listActionSleeping = new List("Action list (sleeping)", Choice.IMPLICIT);//GEN-BEGIN:|199-getter|1|199-postInit
+            listActionSleeping.append("go to sleep/wake up", null);
+            listActionSleeping.append("turn the lights on/off", null);
+            listActionSleeping.addCommand(getBackCommand());
+            listActionSleeping.setCommandListener(this);
+            listActionSleeping.setSelectedFlags(new boolean[] { false, false });//GEN-END:|199-getter|1|199-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|199-getter|2|
+        return listActionSleeping;
+    }
+    //</editor-fold>//GEN-END:|199-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: listActionSleepingAction ">//GEN-BEGIN:|199-action|0|199-preAction
+    /**
+     * Performs an action assigned to the selected list element in the listActionSleeping component.
+     */
+    public void listActionSleepingAction() {//GEN-END:|199-action|0|199-preAction
+        // enter pre-action user code here
+        String __selectedString = getListActionSleeping().getString(getListActionSleeping().getSelectedIndex());//GEN-BEGIN:|199-action|1|203-preAction
+        if (__selectedString != null) {
+            if (__selectedString.equals("go to sleep/wake up")) {//GEN-END:|199-action|1|203-preAction
+                // write pre-action user code here
+                thread.switchSleeping();//GEN-LINE:|199-action|2|203-postAction
+                returnToGameScreen();
+            } else if (__selectedString.equals("turn the lights on/off")) {//GEN-LINE:|199-action|3|204-preAction
+                // write pre-action user code here
+                thread.switchLights();//GEN-LINE:|199-action|4|204-postAction
+                returnToGameScreen();
+            }//GEN-BEGIN:|199-action|5|199-postAction
+        }//GEN-END:|199-action|5|199-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|199-action|6|
+    //</editor-fold>//GEN-END:|199-action|6|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: isSleeping ">//GEN-BEGIN:|207-if|0|207-preIf
+    /**
+     * Performs an action assigned to the isSleeping if-point.
+     */
+    public void isSleeping() {//GEN-END:|207-if|0|207-preIf
+        // enter pre-if user code here
+        if (thread.isSleeping()) {//GEN-LINE:|207-if|1|208-preAction
+            // write pre-action user code here
+            switchDisplayable(null, getListActionSleeping());//GEN-LINE:|207-if|2|208-postAction
+            // write post-action user code here
+        } else {//GEN-LINE:|207-if|3|209-preAction
+            // write pre-action user code here
+            switchDisplayable(null, getActionList());//GEN-LINE:|207-if|4|209-postAction
+            // write post-action user code here
+        }//GEN-LINE:|207-if|5|207-postIf
+        // enter post-if user code here
+    }//GEN-BEGIN:|207-if|6|
+    //</editor-fold>//GEN-END:|207-if|6|
     /**
      * Returns a display instance.
      * @return the display instance.
@@ -819,9 +944,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      * Exits MIDlet.
      */
     public void exitMIDlet() {
-        switchDisplayable(null, null);
-        destroyApp(true);
-        notifyDestroyed();
+        try {
+            thread.stopThread();
+            thread.join();
+            switchDisplayable(null, null);
+            destroyApp(true);
+            notifyDestroyed();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
