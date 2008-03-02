@@ -39,6 +39,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private StringItem stringItem10;
     private StringItem stringItem9;
     private StringItem stringItem8;
+    private Alert saveGame;
     private Command exitCommand;
     private Command backCommand;
     private Command okCommand;
@@ -190,7 +191,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == alert) {
             if (command == backCommand) {//GEN-END:|7-commandAction|7|80-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|8|80-postAction
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|80-postAction
             // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|9|154-preAction
         } else if (displayable == creatureStatsWindow) {
@@ -221,7 +222,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             // write post-action user code here
             } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|15|22-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|16|22-postAction
+                switchDisplayable(null, getSaveGame());//GEN-LINE:|7-commandAction|16|22-postAction
             // write post-action user code here
             } else if (command == statsCommand) {//GEN-LINE:|7-commandAction|17|138-preAction
                 // write pre-action user code here
@@ -249,13 +250,23 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 listOfFoodsAction();//GEN-LINE:|7-commandAction|26|105-postAction
             // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
-        }//GEN-END:|7-commandAction|27|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|27|171-preAction
+        } else if (displayable == saveGame) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|27|171-preAction
+                // write pre-action user code here
+                switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|28|171-postAction
+                // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|29|170-preAction
+                creature.save();
+                exitMIDlet();//GEN-LINE:|7-commandAction|30|170-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|31|7-postCommandAction
+        }//GEN-END:|7-commandAction|31|7-postCommandAction
 
         getGameCanvas().repaint();
         
-    }//GEN-BEGIN:|7-commandAction|28|
-    //</editor-fold>//GEN-END:|7-commandAction|28|
+    }//GEN-BEGIN:|7-commandAction|32|
+    //</editor-fold>//GEN-END:|7-commandAction|32|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|21-getter|0|21-preInit
     /**
@@ -777,6 +788,25 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return stringItem10;
     }
     //</editor-fold>//GEN-END:|166-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: saveGame ">//GEN-BEGIN:|167-getter|0|167-preInit
+    /**
+     * Returns an initiliazed instance of saveGame component.
+     * @return the initialized component instance
+     */
+    public Alert getSaveGame() {
+        if (saveGame == null) {//GEN-END:|167-getter|0|167-preInit
+            // write pre-init user code here
+            saveGame = new Alert("Save game?");//GEN-BEGIN:|167-getter|1|167-postInit
+            saveGame.addCommand(getOkCommand());
+            saveGame.addCommand(getBackCommand());
+            saveGame.setCommandListener(this);
+            saveGame.setTimeout(Alert.FOREVER);//GEN-END:|167-getter|1|167-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|167-getter|2|
+        return saveGame;
+    }
+    //</editor-fold>//GEN-END:|167-getter|2|
     /**
      * Returns a display instance.
      * @return the display instance.

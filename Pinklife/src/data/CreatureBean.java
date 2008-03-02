@@ -24,6 +24,23 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         this.playLevel = playLevel;
         this.tireLevel = tireLevel;
     }
+    
+    public void debug() {
+        System.out.println("--------");
+        System.out.println("Name: "+getName());
+        System.out.println("");
+        System.out.println("Food: "+getFoodLevel());
+        System.out.println("Water: "+getWaterLevel());
+        System.out.println("Dirty: "+getDirtyLevel());
+        System.out.println("Mess: "+getMessLevel());
+        System.out.println("Play: "+getPlayLevel());
+        System.out.println("Tire: "+getTireLevel());
+        System.out.println("");
+        System.out.println("Happiness: "+getHappiness());
+        System.out.println("Size: "+getSize());
+        System.out.println("Illness: "+getIllness());
+        System.out.println("--------");        
+    }
 
 
     //<editor-fold defaultstate="collapsed" desc="User actions...">

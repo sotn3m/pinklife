@@ -65,4 +65,7 @@ public interface CreatureBehaviourInterface {
     boolean load();
 
     boolean save();
+    
+    // other:
+    void debug();    
 }
