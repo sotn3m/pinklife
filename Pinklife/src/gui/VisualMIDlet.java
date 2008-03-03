@@ -167,8 +167,8 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             gameCanvas = new GameCanvas();//GEN-BEGIN:|13-getter|1|13-postInit
             gameCanvas.setTitle("gameCanvas");
             gameCanvas.addCommand(getExitCommand());
-            gameCanvas.addCommand(getStatsCommand());
             gameCanvas.addCommand(getActionCommand());
+            gameCanvas.addCommand(getStatsCommand());
             gameCanvas.setCommandListener(this);//GEN-END:|13-getter|1|13-postInit
         // write post-init user code here
         }//GEN-BEGIN:|13-getter|2|
