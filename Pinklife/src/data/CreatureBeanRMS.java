@@ -77,6 +77,8 @@ public class CreatureBeanRMS {
             store.addRecord(intToByte(getTireLevel()), 0, 4);
             store.addRecord(intToByte(getSize()), 0, 4);
             store.addRecord(intToByte(getIllness()), 0, 4);
+            
+            store.closeRecordStore();
 
             return true;
         } catch (Exception ex) {
@@ -106,6 +108,8 @@ public class CreatureBeanRMS {
             setTireLevel(byteToInt(store.getRecord(8)));
             setSize(byteToInt(store.getRecord(9)));
             setIllness(byteToInt(store.getRecord(10)));
+            
+            store.closeRecordStore();
 
             return true;
         } catch (Exception ex) {

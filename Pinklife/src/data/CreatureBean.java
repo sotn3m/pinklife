@@ -72,7 +72,8 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         foodLevel += 200;
         dirtyLevel += 50;
         messLevel += 50;
-        size += 1;
+        size += 1;  
+        changeIllnessAtRandom1toN(300);
     }
 
     public void drinkMilk() {
@@ -93,6 +94,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         waterLevel += 200;
         dirtyLevel += 20;
         messLevel += 10;
+        changeIllnessAtRandom1toN(300);
     }
 
     public void tidy() {
@@ -107,6 +109,10 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         messLevel += getRandomNumber(5, 30);
         playLevel += getRandomNumber(220, 320);
     }
+    
+    public void cure() {
+        setIllness(0);        
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Time passing...">
@@ -120,6 +126,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         messLevel += 6;
 
         tireLevel -= 2;
+        changeIllnessAtRandom1toN(1000);
     }
 
     public void timePassWithoutLight() {
@@ -132,6 +139,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         messLevel += 8;
 
         tireLevel -= 3;
+        changeIllnessAtRandom1toN(1000);
     }
 
     public void timePassWithSleep() {
@@ -141,6 +149,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         dirtyLevel += 1;
 
         tireLevel += 3;
+        changeIllnessAtRandom1toN(500);
     }
 
     public void timePassWithSleepWithoutLight() {
@@ -150,6 +159,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         dirtyLevel += 1;
 
         tireLevel += 1;
+        changeIllnessAtRandom1toN(1000);
     }
     //</editor-fold>
 
@@ -238,5 +248,13 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
 
     private void calculateHappiness() {
         //TODO
+    }
+    
+    private void changeIllnessAtRandom1toN(int N) {
+        if(getIllness()==0) {
+            if(getRandomNumber(0, N)==13) {
+                setIllness(1);
+            }
+        }            
     }
 }

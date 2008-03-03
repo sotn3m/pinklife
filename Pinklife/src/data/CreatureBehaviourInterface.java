@@ -42,6 +42,8 @@ public interface CreatureBehaviourInterface {
 
     void washCreature();
     
+    void cure();
+    
     // accessors:
     String getTextDirtyLevel();
 

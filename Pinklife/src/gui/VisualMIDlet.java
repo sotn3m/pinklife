@@ -67,7 +67,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
     private void load() {
         try {
             creature = new CreatureBean();
-
+            
             getGameCanvas().assignCreature(creature);
 
             if (thread == null) {
@@ -603,9 +603,10 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             actionList.append("play", null);
             actionList.append("go to sleep/wake up", null);
             actionList.append("turn the lights on/off", null);
+            actionList.append("give medicine", null);
             actionList.addCommand(getBackCommand());
             actionList.setCommandListener(this);
-            actionList.setSelectedFlags(new boolean[] { false, false, false, false, false, false, false });//GEN-END:|141-getter|1|141-postInit
+            actionList.setSelectedFlags(new boolean[] { false, false, false, false, false, false, false, false });//GEN-END:|141-getter|1|141-postInit
         // write post-init user code here
         }//GEN-BEGIN:|141-getter|2|
         return actionList;
@@ -648,11 +649,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 thread.switchLights();//GEN-LINE:|141-action|14|182-postAction
                 returnToGameScreen();
-            }//GEN-BEGIN:|141-action|15|141-postAction
-        }//GEN-END:|141-action|15|141-postAction
+            } else if (__selectedString.equals("give medicine")) {//GEN-LINE:|141-action|15|216-preAction
+                // write pre-action user code here
+                thread.giveMedicine();//GEN-LINE:|141-action|16|216-postAction
+                returnToGameScreen();
+            }//GEN-BEGIN:|141-action|17|141-postAction
+        }//GEN-END:|141-action|17|141-postAction
     // post-action
-    }//GEN-BEGIN:|141-action|16|
-    //</editor-fold>//GEN-END:|141-action|16|
+    }//GEN-BEGIN:|141-action|18|
+    //</editor-fold>//GEN-END:|141-action|18|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: actionCommand ">//GEN-BEGIN:|139-getter|0|139-preInit
     /**
