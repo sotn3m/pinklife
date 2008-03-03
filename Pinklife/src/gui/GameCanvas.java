@@ -64,6 +64,8 @@ public class GameCanvas extends Canvas implements CommandListener {
             g.drawString("Sleeping", 0, 100, Graphics.TOP | Graphics.LEFT);
         else
             g.drawString("No sleeping", 0, 100, Graphics.TOP | Graphics.LEFT);
+        
+        g.drawImage(creature.getCurrentImage(), 100, 40, Graphics.TOP|Graphics.LEFT);
     }
 
     /**

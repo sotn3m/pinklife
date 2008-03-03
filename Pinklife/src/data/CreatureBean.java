@@ -1,5 +1,7 @@
 package data;
 
+import javax.microedition.lcdui.Image;
+
 /**
  *
  * @author sotn3m <sotn3m at gmail dot com>
@@ -225,6 +227,12 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         return "sleepy";
     }
 
+    public Image getCurrentImage() {
+        if(getHappiness() > 0)
+            return Images.getSmiledImage();
+        else
+            return Images.getSadImage();
+    }
 
     //</editor-fold>
 

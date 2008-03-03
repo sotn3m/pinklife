@@ -5,6 +5,8 @@
 
 package data;
 
+import javax.microedition.lcdui.Image;
+
 /**
  *
  * @author sotn3m <sotn3m at gmail dot com>
@@ -58,6 +60,9 @@ public interface CreatureBehaviourInterface {
     String getTextTireLevel();
 
     String getTextWaterLevel();
+    
+    //image
+    public Image getCurrentImage();
     
     // RMS part:    
     String getName();
