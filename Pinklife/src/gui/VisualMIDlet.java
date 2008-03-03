@@ -202,7 +202,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|7|212-preAction
                 // write pre-action user code here
                 switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|8|212-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|9|80-preAction
         } else if (displayable == alert) {
             if (command == backCommand) {//GEN-END:|7-commandAction|9|80-preAction
@@ -259,11 +259,11 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|25|200-preAction
                 // write pre-action user code here
                 listActionSleepingAction();//GEN-LINE:|7-commandAction|26|200-postAction
-                // write post-action user code here
+            // write post-action user code here
             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|27|214-preAction
                 // write pre-action user code here
                 switchToPreviousDisplayable();//GEN-LINE:|7-commandAction|28|214-postAction
-                // write post-action user code here
+            // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|29|117-preAction
         } else if (displayable == listOfDrinks) {
             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|29|117-preAction
@@ -869,9 +869,6 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         return noCommand;
     }
     //</editor-fold>//GEN-END:|184-getter|2|
-
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: listActionSleeping ">//GEN-BEGIN:|199-getter|0|199-preInit
     /**
      * Returns an initiliazed instance of listActionSleeping component.
@@ -886,7 +883,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             listActionSleeping.addCommand(getBackCommand());
             listActionSleeping.setCommandListener(this);
             listActionSleeping.setSelectedFlags(new boolean[] { false, false });//GEN-END:|199-getter|1|199-postInit
-            // write post-init user code here
+        // write post-init user code here
         }//GEN-BEGIN:|199-getter|2|
         return listActionSleeping;
     }
@@ -910,7 +907,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 returnToGameScreen();
             }//GEN-BEGIN:|199-action|5|199-postAction
         }//GEN-END:|199-action|5|199-postAction
-        // enter post-action user code here
+    // enter post-action user code here
     }//GEN-BEGIN:|199-action|6|
     //</editor-fold>//GEN-END:|199-action|6|
 
@@ -923,13 +920,13 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (thread.isSleeping()) {//GEN-LINE:|207-if|1|208-preAction
             // write pre-action user code here
             switchDisplayable(null, getListActionSleeping());//GEN-LINE:|207-if|2|208-postAction
-            // write post-action user code here
+        // write post-action user code here
         } else {//GEN-LINE:|207-if|3|209-preAction
             // write pre-action user code here
             switchDisplayable(null, getActionList());//GEN-LINE:|207-if|4|209-postAction
-            // write post-action user code here
+        // write post-action user code here
         }//GEN-LINE:|207-if|5|207-postIf
-        // enter post-if user code here
+    // enter post-if user code here
     }//GEN-BEGIN:|207-if|6|
     //</editor-fold>//GEN-END:|207-if|6|
     /**
@@ -945,14 +942,16 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void exitMIDlet() {
         try {
-            thread.stopThread();
-            thread.join();
-            switchDisplayable(null, null);
-            destroyApp(true);
-            notifyDestroyed();
+            if (thread != null) {
+                thread.stopThread();
+                thread.join();
+            }
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+        switchDisplayable(null, null);
+        destroyApp(true);
+        notifyDestroyed();
     }
 
     /**
