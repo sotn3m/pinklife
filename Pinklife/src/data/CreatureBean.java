@@ -262,11 +262,25 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public Image getCurrentImage() {
-        if (getHappiness() > 0) {
-            return Images.getSmiledImage(getTextSize());
-        } else {
+        if (getIllness() == 1) {
+            return Images.getIllImage(getTextSize());
+        }
+        if (isSleeping()) {
+            return Images.getSleepingImage(getTextSize());
+        }
+        if (getHappiness() == -2) {
+            return Images.getVerySadImage(getTextSize());
+        }
+        if (getHappiness() == -1) {
             return Images.getSadImage(getTextSize());
         }
+        if (getHappiness() == 0) {
+            return Images.getNormalImage(getTextSize());
+        }
+        if (getHappiness() == 1) {
+            return Images.getHappyImage(getTextSize());
+        }
+        return Images.getVeryHappyImage(getTextSize());
     }
 
     //</editor-fold>
