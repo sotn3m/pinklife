@@ -45,6 +45,7 @@ public class MainThread extends Thread {
 
     public void switchSleeping() {
         sleeping = !sleeping;
+        _creature.setSleeping(sleeping);
     }
 
     public boolean isSleeping() {
@@ -59,7 +60,7 @@ public class MainThread extends Thread {
         int iCounter = 0;
 
         while (_bContinue) {
-            if (iCounter >= 50) {
+            if (iCounter >= 80) {
                 timePassing();
                 _creature.debug();
                 

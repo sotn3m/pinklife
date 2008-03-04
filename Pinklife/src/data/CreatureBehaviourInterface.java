@@ -63,6 +63,11 @@ public interface CreatureBehaviourInterface {
 
     String getTextWaterLevel();
     
+    //
+    void setSleeping(boolean value);
+    
+    boolean isSleeping();
+    
     //image
     public Image getCurrentImage();
     

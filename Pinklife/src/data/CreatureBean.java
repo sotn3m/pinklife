@@ -7,15 +7,19 @@ import javax.microedition.lcdui.Image;
  * @author sotn3m <sotn3m at gmail dot com>
  */
 public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourInterface {
-        
+
+    private boolean sleeping;
+
     //<editor-fold defaultstate="collapsed" desc="Contructors and debug method">
     public CreatureBean() throws Exception {
+        setSleeping(false);
         if (!load()) {
             throw new Exception("Loading failed");
         }
     }
 
     public CreatureBean(String sName, int happiness, int illness, int size, int foodLevel, int waterLevel, int dirtyLevel, int messLevel, int playLevel, int tireLevel) {
+        setSleeping(false);
         this.sName = sName;
         this.happiness = happiness;
         this.illness = illness;
@@ -27,22 +31,22 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         this.playLevel = playLevel;
         this.tireLevel = tireLevel;
     }
-    
+
     public void debug() {
         System.out.println("--------");
-        System.out.println("Name: "+getName());
+        System.out.println("Name: " + getName());
         System.out.println("");
-        System.out.println("Food: "+getFoodLevel());
-        System.out.println("Water: "+getWaterLevel());
-        System.out.println("Dirty: "+getDirtyLevel());
-        System.out.println("Mess: "+getMessLevel());
-        System.out.println("Play: "+getPlayLevel());
-        System.out.println("Tire: "+getTireLevel());
+        System.out.println("Food: " + getFoodLevel());
+        System.out.println("Water: " + getWaterLevel());
+        System.out.println("Dirty: " + getDirtyLevel());
+        System.out.println("Mess: " + getMessLevel());
+        System.out.println("Play: " + getPlayLevel());
+        System.out.println("Tire: " + getTireLevel());
         System.out.println("");
-        System.out.println("Happiness: "+getHappiness());
-        System.out.println("Size: "+getSize());
-        System.out.println("Illness: "+getIllness());
-        System.out.println("--------");        
+        System.out.println("Happiness: " + getHappiness());
+        System.out.println("Size: " + getSize());
+        System.out.println("Illness: " + getIllness());
+        System.out.println("--------");
     }
     //</editor-fold>
 
@@ -72,19 +76,19 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         foodLevel += 200;
         dirtyLevel += 50;
         messLevel += 50;
-        size += 1;  
+        size += 1;
         changeIllnessAtRandom1toN(300);
     }
 
     public void drinkMilk() {
-        waterLevel += 100;
+        waterLevel += 200;
         dirtyLevel += 30;
         messLevel += 10;
         size += 3;
     }
 
     public void drinkOrangeJuice() {
-        waterLevel += 100;
+        waterLevel += 180;
         foodLevel += 10;
         dirtyLevel += 40;
         messLevel += 10;
@@ -98,20 +102,20 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public void tidy() {
-        messLevel = 0;        
+        messLevel = 0;
     }
 
     public void washCreature() {
-        dirtyLevel = 0;        
+        dirtyLevel = 0;
     }
 
     public void play() {
         messLevel += getRandomNumber(5, 30);
         playLevel += getRandomNumber(220, 320);
     }
-    
+
     public void cure() {
-        setIllness(0);        
+        setIllness(0);
     }
     //</editor-fold>
 
@@ -127,6 +131,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
 
         tireLevel -= 2;
         changeIllnessAtRandom1toN(1000);
+        limitValues();
     }
 
     public void timePassWithoutLight() {
@@ -140,121 +145,168 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
 
         tireLevel -= 3;
         changeIllnessAtRandom1toN(1000);
+        limitValues();
     }
 
     public void timePassWithSleep() {
-        foodLevel -= 2;
-        waterLevel -= 4;
-
-        dirtyLevel += 1;
-
-        tireLevel += 3;
-        changeIllnessAtRandom1toN(500);
-    }
-
-    public void timePassWithSleepWithoutLight() {
-        foodLevel -= 2;
-        waterLevel -= 4;
+        foodLevel -= 1;
+        waterLevel -= 3;
 
         dirtyLevel += 1;
 
         tireLevel += 1;
+        changeIllnessAtRandom1toN(500);
+        limitValues();
+    }
+
+    public void timePassWithSleepWithoutLight() {
+        foodLevel -= 1;
+        waterLevel -= 3;
+
+        dirtyLevel += 1;
+
+        tireLevel += 2;
         changeIllnessAtRandom1toN(1000);
+        limitValues();
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Accessors">
     public String getTextHappiness() {
         calculateHappiness();
-        switch(happiness)
-        {
-            case -2: return "Very sad!";
-            case -1: return "Sad!";
-            case 0: return "Normal";
-            case 1: return "Happy :)";
-            case 2: return "Very happy :)";            
+        switch (happiness) {
+            case -2:
+                return "Very sad! ;-(";
+            case -1:
+                return "Sad :(";
+            case 0:
+                return "Not happy, nod sad...";
+            case 1:
+                return "Happy :)";
+            case 2:
+                return "Very happy :)";
         }
         return null;
     }
 
     public String getTextFoodLevel() {
-        if(getFoodLevel()<50 && getFoodLevel()>=0)
+        if (getFoodLevel() < 50 && getFoodLevel() >= 0) {
             return "little hunger";
-        else if(getFoodLevel()<0)
+        } else if (getFoodLevel() < 0) {
             return "hungry";
+        }
         return "full";
     }
 
     public String getTextWaterLevel() {
-        if(getWaterLevel()<50 && getWaterLevel()>=0)
+        if (getWaterLevel() < 50 && getWaterLevel() >= 0) {
             return "little thirsty";
-        else if(getWaterLevel()<0)
+        } else if (getWaterLevel() < 0) {
             return "thirsty";
+        }
         return "ok";
     }
-    
+
     public String getTextIllness() {
-        if(getIllness()==1)
+        if (getIllness() == 1) {
             return "ill";
+        }
         return "healthy";
     }
 
     public String getTextMessLevel() {
-        if(getMessLevel()>500)
+        if (getMessLevel() > 500) {
             return "total mess";
-        else if(getMessLevel()>200)
+        } else if (getMessLevel() > 200) {
             return "mess";
+        }
         return "order";
     }
-    
+
     public String getTextDirtyLevel() {
-        if(getDirtyLevel()>100)
+        if (getDirtyLevel() > 100) {
             return "dirty";
+        }
         return "clean";
     }
 
     public String getTextPlayLevel() {
-        if(getPlayLevel()<100 && getPlayLevel()>=0)
+        if (getPlayLevel() < 100 && getPlayLevel() >= 0) {
             return "I want to play with you!:)";
-        else if(getPlayLevel()<0)
-            return "Total bored";
-        else return "So happy while playing with you";
+        } else if (getPlayLevel() < 0) {
+            return "Totally bored";
+        } else {
+            return "So happy while playing with you";
+        }
     }
 
     public String getTextSize() {
-        if(getSize()<300)
+        if (getSize() < 300) {
             return "small";
-        else if(getSize()<1000)
+        } else if (getSize() < 1000) {
             return "medium";
+        }
         return "large";
     }
 
     public String getTextTireLevel() {
-        if(getTireLevel()>100)
+        if (isSleeping()) {
+            return "Sleeping (" + (getTireLevel() > 150 ? "enough" : "want to sleep!") + ")";
+        }
+        if (getTireLevel() > 100) {
             return "Well-rested";
-        else if(getTireLevel()>0)
+        } else if (getTireLevel() > 0) {
             return "rested";
+        }
         return "sleepy";
     }
 
     public Image getCurrentImage() {
-        if(getHappiness() > 0)
-            return Images.getSmiledImage();
-        else
-            return Images.getSadImage();
+        if (getHappiness() > 0) {
+            return Images.getSmiledImage(getTextSize());
+        } else {
+            return Images.getSadImage(getTextSize());
+        }
     }
 
     //</editor-fold>
+    private void limitValues() {
+        if (getFoodLevel() > 600) {
+            setFoodLevel(600);
+        }
+        if (getWaterLevel() > 600) {
+            setWaterLevel(600);
+        }
+    }
 
     private void calculateHappiness() {
-        //TODO
+        happiness = 2;
+        happiness -= illness;
+        happiness -= getFoodLevel() < 0 ? 1 : 0;
+        happiness -= getWaterLevel() < 0 ? 1 : 0;
+        happiness -= getMessLevel() > 500 ? 1 : 0;
+        happiness -= getDirtyLevel() > 100 ? 1 : 0;
+        happiness -= getPlayLevel() < 0 ? 1 : 0;
+        happiness -= getTireLevel() < 0 ? 1 : 0;
+        if (happiness < -2) {
+            happiness = -2;
+        }
+
     }
-    
+
     private void changeIllnessAtRandom1toN(int N) {
-        if(getIllness()==0) {
-            if(getRandomNumber(0, N)==13) {
+        if (getIllness() == 0) {
+            if (getRandomNumber(0, N) == 13) {
                 setIllness(1);
             }
-        }            
+        }
+    }
+
+    public boolean isSleeping() {
+        return sleeping;
+    }
+
+    public void setSleeping(boolean sleeping) {
+        this.sleeping = sleeping;
     }
 }

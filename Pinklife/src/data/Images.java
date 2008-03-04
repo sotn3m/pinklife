@@ -16,12 +16,12 @@ public class Images {
     private static Image smiledImage = null;
     private static Image sadImage = null;
     
-    public static Image getSmiledImage() {
+    public static Image getSmiledImage(String size) {
         if(smiledImage==null) 
             smiledImage = readImage("/resources/icon.png");        
         return smiledImage;
     }
-    public static Image getSadImage() {
+    public static Image getSadImage(String size) {
         if(sadImage==null) 
             sadImage = readImage("/resources/icon.png");
         return sadImage;
