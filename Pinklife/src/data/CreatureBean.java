@@ -9,6 +9,9 @@ import javax.microedition.lcdui.Image;
 public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourInterface {
 
     private boolean sleeping;
+    private String lastImageName = null;
+    private String lastImageSize = null;
+    private Image lastImage = null;
 
     //<editor-fold defaultstate="collapsed" desc="Contructors and debug method">
     public CreatureBean() throws Exception {
@@ -127,7 +130,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         playLevel--;
 
         dirtyLevel += 4;
-        messLevel += 6;        
+        messLevel += 6;
 
         tireLevel -= 2;
         changeIllnessAtRandom1toN(1000);
@@ -169,9 +172,14 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         changeIllnessAtRandom1toN(1000);
         limitValues();
     }
+
+    public int getHappiness() {
+        calculateHappiness();
+        return super.getHappiness();
+    }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Accessors">
+    //<editor-fold defaultstate="collapsed" desc="Accessors">        
     public String getTextHappiness() {
         calculateHappiness();
         switch (happiness) {
@@ -262,25 +270,31 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public Image getCurrentImage() {
+        String currentImageName;
         if (getIllness() == 1) {
-            return Images.readImage("illness", getTextSize());
+            currentImageName = "illness";
+        } else if (isSleeping()) {
+            currentImageName = "sleeping";
+        } else if (getHappiness() == -2) {
+            currentImageName = "verysad";
+        } else if (getHappiness() == -1) {
+            currentImageName = "sad";
+        } else if (getHappiness() == 0) {
+            currentImageName = "normal";
+        } else if (getHappiness() == 1) {
+            currentImageName = "happy";
+        } else {
+            currentImageName = "veryhappy";
         }
-        if (isSleeping()) {
-            return Images.readImage("sleeping", getTextSize());
+        if (lastImage != null) {
+            if (currentImageName.equals(lastImageName) && getTextSize().equals(lastImageSize)) {
+                return lastImage;
+            }
         }
-        if (getHappiness() == -2) {
-            return Images.readImage("verysad", getTextSize());
-        }
-        if (getHappiness() == -1) {
-            return Images.readImage("sad", getTextSize());
-        }
-        if (getHappiness() == 0) {
-            return Images.readImage("normal", getTextSize());
-        }
-        if (getHappiness() == 1) {
-            return Images.readImage("happy", getTextSize());
-        }
-        return Images.readImage("veryhappy", getTextSize());
+        lastImage = Images.readImage(currentImageName, getTextSize());
+        lastImageName = currentImageName;
+        lastImageSize = getTextSize();
+        return lastImage;
     }
 
     //</editor-fold>
