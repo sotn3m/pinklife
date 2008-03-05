@@ -127,7 +127,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         playLevel--;
 
         dirtyLevel += 4;
-        messLevel += 6;
+        messLevel += 6;        
 
         tireLevel -= 2;
         changeIllnessAtRandom1toN(1000);
@@ -246,7 +246,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         } else if (getSize() < 1000) {
             return "medium";
         }
-        return "large";
+        return "big";
     }
 
     public String getTextTireLevel() {
@@ -263,24 +263,24 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
 
     public Image getCurrentImage() {
         if (getIllness() == 1) {
-            return Images.getIllImage(getTextSize());
+            return Images.readImage("illness", getTextSize());
         }
         if (isSleeping()) {
-            return Images.getSleepingImage(getTextSize());
+            return Images.readImage("sleeping", getTextSize());
         }
         if (getHappiness() == -2) {
-            return Images.getVerySadImage(getTextSize());
+            return Images.readImage("verysad", getTextSize());
         }
         if (getHappiness() == -1) {
-            return Images.getSadImage(getTextSize());
+            return Images.readImage("sad", getTextSize());
         }
         if (getHappiness() == 0) {
-            return Images.getNormalImage(getTextSize());
+            return Images.readImage("normal", getTextSize());
         }
         if (getHappiness() == 1) {
-            return Images.getHappyImage(getTextSize());
+            return Images.readImage("happy", getTextSize());
         }
-        return Images.getVeryHappyImage(getTextSize());
+        return Images.readImage("veryhappy", getTextSize());
     }
 
     //</editor-fold>
