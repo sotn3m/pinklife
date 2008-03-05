@@ -62,7 +62,7 @@ public class MainThread extends Thread {
         while (_bContinue) {
             if (iCounter >= 80) {
                 timePassing();
-                _creature.debug();
+                //_creature.debug();
                 
                 iCounter = 0;
                 
