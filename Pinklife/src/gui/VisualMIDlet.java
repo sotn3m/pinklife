@@ -165,7 +165,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (gameCanvas == null) {//GEN-END:|13-getter|0|13-preInit
             // write pre-init user code here
             gameCanvas = new GameCanvas();//GEN-BEGIN:|13-getter|1|13-postInit
-            gameCanvas.setTitle("gameCanvas");
+            gameCanvas.setTitle("Your creature");
             gameCanvas.addCommand(getExitCommand());
             gameCanvas.addCommand(getActionCommand());
             gameCanvas.addCommand(getStatsCommand());
@@ -223,7 +223,8 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 stringItem7 = null;
                 stringItem8 = null;
                 stringItem9 = null;
-                stringItem10 = null;                              
+                stringItem10 = null;      
+                creatureStatsWindow = null;
             }//GEN-BEGIN:|7-commandAction|13|62-preAction
         } else if (displayable == form) {
             if (command == backCommand) {//GEN-END:|7-commandAction|13|62-preAction
