@@ -259,7 +259,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
 
     public String getTextTireLevel() {
         if (isSleeping()) {
-            return "Sleeping (" + (getTireLevel() > 150 ? "enough" : "want to sleep!") + ")";
+            return "Sleeping (" + (getTireLevel() > 150 ? "enough" : "wants to sleep!") + ")";
         }
         if (getTireLevel() > 100) {
             return "Well-rested";
