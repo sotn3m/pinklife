@@ -333,8 +333,8 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         if (list == null) {//GEN-END:|33-getter|0|33-preInit
             // write pre-init user code here
             list = new List("Menu", Choice.IMPLICIT);//GEN-BEGIN:|33-getter|1|33-postInit
-            list.append("New creature", null);
             list.append("Load creature", null);
+            list.append("New creature", null);
             list.append("Help", null);
             list.addCommand(getExitCommand());
             list.setCommandListener(this);
@@ -351,15 +351,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
      */
     public void listAction() {//GEN-END:|33-action|0|33-preAction
         // enter pre-action user code here
-        String __selectedString = getList().getString(getList().getSelectedIndex());//GEN-BEGIN:|33-action|1|41-preAction
+        String __selectedString = getList().getString(getList().getSelectedIndex());//GEN-BEGIN:|33-action|1|42-preAction
         if (__selectedString != null) {
-            if (__selectedString.equals("New creature")) {//GEN-END:|33-action|1|41-preAction
+            if (__selectedString.equals("Load creature")) {//GEN-END:|33-action|1|42-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getCreatureNameTextBox());//GEN-LINE:|33-action|2|41-postAction
+                load();//GEN-LINE:|33-action|2|42-postAction
             // write post-action user code here
-            } else if (__selectedString.equals("Load creature")) {//GEN-LINE:|33-action|3|42-preAction
+            } else if (__selectedString.equals("New creature")) {//GEN-LINE:|33-action|3|41-preAction
                 // write pre-action user code here
-                load();//GEN-LINE:|33-action|4|42-postAction
+                switchDisplayable(null, getCreatureNameTextBox());//GEN-LINE:|33-action|4|41-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Help")) {//GEN-LINE:|33-action|5|44-preAction
                 // write pre-action user code here
