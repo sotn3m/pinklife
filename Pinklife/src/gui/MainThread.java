@@ -16,9 +16,7 @@ public class MainThread extends Thread {
     private data.CreatureBehaviourInterface _creature;
     private gui.GameCanvas _canvas;
     // whether thread should run or be stopped
-    private boolean _bContinue;
-    private boolean sleeping = false;
-    private boolean lights = true;
+    private boolean _bContinue;    
     private boolean medicineToBeGiven = false;
 
     MainThread(CreatureBehaviourInterface creature, GameCanvas canvas) {
@@ -40,16 +38,15 @@ public class MainThread extends Thread {
     }
 
     public void switchLights() {
-        lights = !lights;
+        _creature.switchLight();
     }
 
     public void switchSleeping() {
-        sleeping = !sleeping;
-        _creature.setSleeping(sleeping);
+        _creature.switchSleeping();
     }
 
     public boolean isSleeping() {
-        return sleeping;
+        return _creature.isSleeping();
     }
 
     public void giveMedicine() {
@@ -62,7 +59,7 @@ public class MainThread extends Thread {
         while (_bContinue) {
             if (iCounter >= 80) {
                 timePassing();
-                //_creature.debug();
+                _creature.debug();
                 
                 iCounter = 0;
                 
@@ -75,12 +72,8 @@ public class MainThread extends Thread {
             }
             iCounter++;
 
-            _canvas.setLight(lights);
-            _canvas.setSleeping(sleeping);
-
             //redraw the scene
             _canvas.repaint();
-
 
             try {
                 sleep(100); // wait 10ms every loop
@@ -91,19 +84,6 @@ public class MainThread extends Thread {
     }
 
     private void timePassing() {
-        // make the time pass
-        if (sleeping) {
-            if (lights) {
-                _creature.timePassWithSleep();
-            } else {
-                _creature.timePassWithSleepWithoutLight();
-            }
-        } else {
-            if (lights) {
-                _creature.timePass();
-            } else {
-                _creature.timePassWithoutLight();
-            }
-        }
+        _creature.timePassing();
     }
 }

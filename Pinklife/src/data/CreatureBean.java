@@ -8,7 +8,6 @@ import javax.microedition.lcdui.Image;
  */
 public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourInterface {
 
-    private boolean sleeping;
     private String lastImageName = null;
     private String lastImageSize = null;
     private Image lastImage = null;
@@ -33,6 +32,8 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         this.messLevel = messLevel;
         this.playLevel = playLevel;
         this.tireLevel = tireLevel;
+        this.sleepingState = 0;
+        this.lightState = 0;
     }
 
     public void debug() {
@@ -49,6 +50,8 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         System.out.println("Happiness: " + getHappiness());
         System.out.println("Size: " + getSize());
         System.out.println("Illness: " + getIllness());
+        System.out.println("isSleeping: " + isSleeping());
+        System.out.println("isLightTurnedOn: " + isLightTurnedOn());
         System.out.println("--------");
     }
     //</editor-fold>
@@ -123,7 +126,24 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Time passing...">
-    public void timePass() {
+    public void timePassing() {
+        // make the time pass
+        if (isSleeping()) {
+            if (isLightTurnedOn()) {
+                timePassWithSleep();
+            } else {
+                timePassWithSleepWithoutLight();
+            }
+        } else {
+            if (isLightTurnedOn()) {
+                timePass();
+            } else {
+                timePassWithoutLight();
+            }
+        }
+    }
+    
+    private void timePass() {
         foodLevel--;
         waterLevel -= 2;
 
@@ -137,7 +157,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         limitValues();
     }
 
-    public void timePassWithoutLight() {
+    private void timePassWithoutLight() {
         foodLevel--;
         waterLevel -= getRandomNumber(1, 3);
 
@@ -151,7 +171,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         limitValues();
     }
 
-    public void timePassWithSleep() {
+    private void timePassWithSleep() {
         foodLevel -= 1;
         waterLevel -= 3;
 
@@ -162,7 +182,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         limitValues();
     }
 
-    public void timePassWithSleepWithoutLight() {
+    private void timePassWithSleepWithoutLight() {
         foodLevel -= 1;
         waterLevel -= 3;
 
@@ -330,11 +350,19 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         }
     }
 
-    public boolean isSleeping() {
-        return sleeping;
+    private void setSleeping(boolean value) {
+        setSleepingState(value ? 1 : 0);
     }
 
-    public void setSleeping(boolean sleeping) {
-        this.sleeping = sleeping;
+    private void setLight(boolean value) {
+        setLightState(value ? 1 : 0);
+    }
+
+    public void switchLight() {
+        setLight(!isLightTurnedOn());
+    }
+
+    public void switchSleeping() {
+        setSleeping(!isSleeping());
     }
 }

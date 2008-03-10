@@ -32,13 +32,7 @@ public interface CreatureBehaviourInterface {
 
     void tidy();
 
-    void timePass();
-
-    void timePassWithSleep();
-
-    void timePassWithSleepWithoutLight();
-
-    void timePassWithoutLight();
+    void timePassing();
 
     void washCreature();
     
@@ -63,10 +57,11 @@ public interface CreatureBehaviourInterface {
 
     String getTextWaterLevel();
     
-    //
-    void setSleeping(boolean value);
-    
-    boolean isSleeping();
+    // sleep/light
+    public void switchSleeping();
+    public void switchLight();
+    public boolean isLightTurnedOn();
+    public boolean isSleeping();
     
     //image
     public Image getCurrentImage();

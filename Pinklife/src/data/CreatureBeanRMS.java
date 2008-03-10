@@ -28,6 +28,10 @@ public class CreatureBeanRMS {
     protected int messLevel; //around
     protected int playLevel;
     protected int tireLevel;
+    
+    protected int sleepingState; // 0 if awake, 1 if sleeping
+    protected int lightState; // 0 turned off, 1 turned on
+    
     private Random random;
 
     //<editor-fold defaultstate="collapsed" desc="int to byte[] and vice versa">
@@ -81,6 +85,8 @@ public class CreatureBeanRMS {
             store.addRecord(intToByte(getTireLevel()), 0, 4);
             store.addRecord(intToByte(getSize()), 0, 4);
             store.addRecord(intToByte(getIllness()), 0, 4);
+            store.addRecord(intToByte(getSleepingState()), 0, 4);
+            store.addRecord(intToByte(getLightState()), 0, 4);
             
             store.closeRecordStore();
 
@@ -112,6 +118,8 @@ public class CreatureBeanRMS {
             setTireLevel(byteToInt(store.getRecord(8)));
             setSize(byteToInt(store.getRecord(9)));
             setIllness(byteToInt(store.getRecord(10)));
+            setSleepingState(byteToInt(store.getRecord(11)));
+            setLightState(byteToInt(store.getRecord(12)));
             
             store.closeRecordStore();
 
@@ -201,6 +209,30 @@ public class CreatureBeanRMS {
 
     public void setSize(int size) {
         this.size = size;
+    }
+    
+    public boolean isSleeping() {
+        return sleepingState==1;
+    }
+
+    public void setSleepingState(int sleepingState) {
+        this.sleepingState = sleepingState;
+    }
+
+    public boolean isLightTurnedOn() {
+        return lightState==1;
+    }
+
+    public void setLightState(int lightState) {
+        this.lightState = lightState;
+    }
+    
+    public int getSleepingState() {
+        return sleepingState;
+    }
+
+    public int getLightState() {
+        return lightState;
     }
     //</editor-fold>
     
