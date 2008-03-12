@@ -13,6 +13,7 @@ import javax.microedition.rms.RecordStore;
  * @author sotn3m <sotn3m at gmail dot com>
  */
 public class CreatureBeanRMS {
+    private long timeDiff;
 
     protected final String storeName = "creatureData";
     protected String sName;
@@ -34,7 +35,11 @@ public class CreatureBeanRMS {
     
     private Random random;
 
-    //<editor-fold defaultstate="collapsed" desc="int to byte[] and vice versa">
+    //<editor-fold defaultstate="collapsed" desc="int/long to byte[] and vice versa">
+    public static int unsignedByteToInt(byte b) {
+        return (int) b & 0xFF;
+    }
+  
     public static byte[] intToByte(int value) {
         byte[] byteArray = new byte[4];
         byteArray[0] = (byte) ((value >>> 24) & 0xFF);
@@ -43,17 +48,38 @@ public class CreatureBeanRMS {
         byteArray[3] = (byte) (value & 0xFF);
         return byteArray;
     }
-
-    public static int unsignedByteToInt(byte b) {
-        return (int) b & 0xFF;
+    
+    public static byte[] longToByte(long value) {
+        byte[] byteArray = new byte[8];
+        byteArray[0] = (byte) ((value >>> 56) & 0xFF);
+        byteArray[1] = (byte) ((value >>> 48) & 0xFF);
+        byteArray[2] = (byte) ((value >>> 40) & 0xFF);
+        byteArray[3] = (byte) ((value >>> 32) & 0xFF);
+        byteArray[4] = (byte) ((value >>> 24) & 0xFF);
+        byteArray[5] = (byte) ((value >>> 16) & 0xFF);
+        byteArray[6] = (byte) ((value >>> 8) & 0xFF);
+        byteArray[7] = (byte) (value & 0xFF);
+        return byteArray;
     }
-  
+
     public static int byteToInt(byte[] value) {
         int temp = 0;
         temp |= (unsignedByteToInt(value[3]));
         temp |= (unsignedByteToInt(value[2])) << 8;
         temp |= (unsignedByteToInt(value[1])) << 16;
         temp |= (unsignedByteToInt(value[0])) << 24;
+        return temp;
+    }
+    public static long byteToLong(byte[] value) {
+        long temp = 0;
+        temp |= (unsignedByteToInt(value[7]));
+        temp |= (unsignedByteToInt(value[6])) << 8;
+        temp |= (unsignedByteToInt(value[5])) << 16;
+        temp |= (unsignedByteToInt(value[4])) << 24;
+        temp |= (unsignedByteToInt(value[3])) << 32;
+        temp |= (unsignedByteToInt(value[2])) << 40;
+        temp |= (unsignedByteToInt(value[1])) << 48;
+        temp |= (unsignedByteToInt(value[0])) << 56;
         return temp;
     }
     //</editor-fold>
@@ -87,6 +113,7 @@ public class CreatureBeanRMS {
             store.addRecord(intToByte(getIllness()), 0, 4);
             store.addRecord(intToByte(getSleepingState()), 0, 4);
             store.addRecord(intToByte(getLightState()), 0, 4);
+            store.addRecord(longToByte(System.currentTimeMillis()), 0, 8);
             
             store.closeRecordStore();
 
@@ -120,6 +147,7 @@ public class CreatureBeanRMS {
             setIllness(byteToInt(store.getRecord(10)));
             setSleepingState(byteToInt(store.getRecord(11)));
             setLightState(byteToInt(store.getRecord(12)));
+            setTimeDiff(System.currentTimeMillis() - byteToLong(store.getRecord(13)));
             
             store.closeRecordStore();
 
@@ -233,6 +261,14 @@ public class CreatureBeanRMS {
 
     public int getLightState() {
         return lightState;
+    }    
+    
+    public void setTimeDiff(long l) {
+        timeDiff = l;
+    }
+
+    public long getTimeDiff() {
+        return timeDiff;
     }
     //</editor-fold>
     

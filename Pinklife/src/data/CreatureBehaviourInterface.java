@@ -63,6 +63,10 @@ public interface CreatureBehaviourInterface {
     public boolean isLightTurnedOn();
     public boolean isSleeping();
     
+    //time
+    public long getTimeDiff();
+    public void setTimeDiff(long l);
+    
     //image
     public Image getCurrentImage();
     

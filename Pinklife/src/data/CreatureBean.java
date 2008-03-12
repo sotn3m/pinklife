@@ -36,6 +36,22 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         this.lightState = 0;
     }
 
+    public boolean load() {
+        boolean state = super.load();
+
+        long timePassedInSeconds = getTimeDiff() / 1000;
+        int timeDivision = 100;        
+
+        if (timePassedInSeconds / timeDivision > 300) {
+            setWorstCases();
+            return state;
+        }
+        for (int i = 0; i < timePassedInSeconds / timeDivision; i++) {
+            timePassing();
+        }
+        return state;
+    }
+
     public void debug() {
         System.out.println("--------");
         System.out.println("Name: " + getName());
@@ -142,7 +158,11 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
             }
         }
     }
-    
+
+    private void setWorstCases() {
+        //TODO
+    }
+
     private void timePass() {
         foodLevel--;
         waterLevel -= 2;
