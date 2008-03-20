@@ -33,7 +33,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         this.playLevel = playLevel;
         this.tireLevel = tireLevel;
         this.sleepingState = 0;
-        this.lightState = 0;
+        this.lightState = 1;
     }
 
     public boolean load() {

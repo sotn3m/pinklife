@@ -7,8 +7,12 @@ import javax.microedition.lcdui.*;
  * @author sotn3m <sotn3m at gmail dot com>
  */
 public class GameCanvas extends Canvas implements CommandListener {
-
-    private CreatureBehaviourInterface creature;    
+    private static final int BLACK = 0x00000000;
+    private static final int WHITE = 0x00FFFFFF;
+    private static final int RED = 0x00FF0000;
+    private static final int BLUE = 0x000000FF;
+    
+    private CreatureBehaviourInterface creature;
 
     /**
      * constructor
@@ -30,7 +34,7 @@ public class GameCanvas extends Canvas implements CommandListener {
      * paint
      */
     public void paint(Graphics g) {
-        drawBackground(g);        
+        drawBackground(g);
         drawCreature(g);
     }
 
@@ -78,10 +82,10 @@ public class GameCanvas extends Canvas implements CommandListener {
 
     private void drawBackground(Graphics g) {
 
-        if (!creature.isLightTurnedOn()) {
-            g.setColor(255, 255, 255);
+        if (creature.isLightTurnedOn()) {
+            g.setColor(WHITE);        
         } else {
-            g.setColor(0, 0, 0);
+            g.setColor(BLACK);
         }
         g.fillRect(0, 0, getWidth(), getHeight());
     }
