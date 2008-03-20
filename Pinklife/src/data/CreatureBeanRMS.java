@@ -39,6 +39,10 @@ public class CreatureBeanRMS {
     public static int unsignedByteToInt(byte b) {
         return (int) b & 0xFF;
     }
+            
+    public static long unsignedByteToLong(byte b) {
+        return (long) b & 0xFF;
+    }
   
     public static byte[] intToByte(int value) {
         byte[] byteArray = new byte[4];
@@ -72,14 +76,14 @@ public class CreatureBeanRMS {
     }
     public static long byteToLong(byte[] value) {
         long temp = 0;
-        temp |= (unsignedByteToInt(value[7]));
-        temp |= (unsignedByteToInt(value[6])) << 8;
-        temp |= (unsignedByteToInt(value[5])) << 16;
-        temp |= (unsignedByteToInt(value[4])) << 24;
-        temp |= (unsignedByteToInt(value[3])) << 32;
-        temp |= (unsignedByteToInt(value[2])) << 40;
-        temp |= (unsignedByteToInt(value[1])) << 48;
-        temp |= (unsignedByteToInt(value[0])) << 56;
+        temp |= (unsignedByteToLong(value[7]));
+        temp |= (unsignedByteToLong(value[6])) << 8;
+        temp |= (unsignedByteToLong(value[5])) << 16;
+        temp |= (unsignedByteToLong(value[4])) << 24;
+        temp |= (unsignedByteToLong(value[3])) << 32;
+        temp |= (unsignedByteToLong(value[2])) << 40;
+        temp |= (unsignedByteToLong(value[1])) << 48;
+        temp |= (unsignedByteToLong(value[0])) << 56;
         return temp;
     }
     //</editor-fold>
