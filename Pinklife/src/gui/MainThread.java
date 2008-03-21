@@ -70,6 +70,10 @@ public class MainThread extends Thread {
         actionToPerform = action;
     }
     
+    public int getCurrentAction() {
+        return actionToPerform;
+    }
+    
     public void run() {
         int iCounter = 0;
 

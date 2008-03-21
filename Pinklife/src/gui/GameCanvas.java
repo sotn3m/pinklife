@@ -7,12 +7,14 @@ import javax.microedition.lcdui.*;
  * @author sotn3m <sotn3m at gmail dot com>
  */
 public class GameCanvas extends Canvas implements CommandListener {
+
     private static final int BLACK = 0x00000000;
     private static final int WHITE = 0x00FFFFFF;
     private static final int RED = 0x00FF0000;
     private static final int BLUE = 0x000000FF;
     
     private CreatureBehaviourInterface creature;
+    private Animation animation;
 
     /**
      * constructor
@@ -83,7 +85,7 @@ public class GameCanvas extends Canvas implements CommandListener {
     private void drawBackground(Graphics g) {
 
         if (creature.isLightTurnedOn()) {
-            g.setColor(WHITE);        
+            g.setColor(WHITE);
         } else {
             g.setColor(BLACK);
         }
@@ -98,4 +100,9 @@ public class GameCanvas extends Canvas implements CommandListener {
         beginningPixelHeight >>= 1;
         g.drawImage(image, beginningPixelWidth, beginningPixelHeight, Graphics.TOP | Graphics.LEFT);
     }
+
+    private void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+
 }
