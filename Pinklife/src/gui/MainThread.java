@@ -17,7 +17,24 @@ public class MainThread extends Thread {
     private gui.GameCanvas _canvas;
     // whether thread should run or be stopped
     private boolean _bContinue;    
-    private boolean medicineToBeGiven = false;
+    
+    public static final int NOTHING = 0;
+    public static final int GIVE_MEDICINE = 1;
+    
+    public static final int GIVE_ORANGE = 2;
+    public static final int GIVE_PINEAPPLE = 3;
+    public static final int GIVE_PEACH = 4;
+    public static final int GIVE_ICECREAM = 5;
+    
+    public static final int GIVE_MILK = 6;
+    public static final int GIVE_ORANGEJUICE=7;
+    public static final int GIVE_COCACOLA=8;    
+        
+    public static final int TIDY = 9;
+    public static final int SHOWER = 10;
+    public static final int PLAY = 11;    
+    
+    private int actionToPerform;
 
     MainThread(CreatureBehaviourInterface creature, GameCanvas canvas) {
         this._creature = creature;
@@ -49,8 +66,8 @@ public class MainThread extends Thread {
         return _creature.isSleeping();
     }
 
-    public void giveMedicine() {
-        medicineToBeGiven = true;
+    public void performAction(int action) {
+        actionToPerform = action;
     }
     
     public void run() {
@@ -63,12 +80,26 @@ public class MainThread extends Thread {
                 
                 iCounter = 0;
                 
-                //we want the medicine working to be delayed...
-                if(medicineToBeGiven)
+                switch(actionToPerform)
                 {
-                    _creature.cure();
-                    medicineToBeGiven=false;
-                }
+                    case GIVE_MEDICINE: { _creature.cure(); }
+                    
+                    case GIVE_ORANGE: { _creature.eatOrange(); }
+                    case GIVE_PEACH: { _creature.eatPeach(); }
+                    case GIVE_PINEAPPLE: { _creature.eatPineapple(); }
+                    case GIVE_ICECREAM: { _creature.eatIceCream(); }
+                    
+                    case GIVE_MILK: { _creature.drinkMilk(); }
+                    case GIVE_COCACOLA: { _creature.drinkCocaCola(); }
+                    case GIVE_ORANGEJUICE: { _creature.drinkOrangeJuice(); }
+                    
+                    case PLAY: { _creature.play(); }
+                    case SHOWER: { _creature.washCreature(); }
+                    case TIDY: { _creature.tidy(); }
+                    
+                }                
+                actionToPerform=NOTHING;
+                
             }
             iCounter++;
 
