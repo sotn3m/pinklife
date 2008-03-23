@@ -65,10 +65,7 @@ public interface CreatureBehaviourInterface {
     
     //time
     public long getTimeDiff();
-    public void setTimeDiff(long l);
-    
-    //image
-    public Image getCurrentImage();
+    public void setTimeDiff(long l);    
     
     // RMS part:    
     String getName();

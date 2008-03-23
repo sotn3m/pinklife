@@ -9,10 +9,6 @@ import javax.microedition.lcdui.Image;
  */
 public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourInterface {
 
-    private String lastImageName = null;
-    private String lastImageSize = null;
-    private Image lastImage = null;
-
     //<editor-fold defaultstate="collapsed" desc="Contructors and debug method">
     public CreatureBean() throws Exception {
         setSleeping(false);
@@ -308,34 +304,6 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
             return "rested";
         }
         return "sleepy";
-    }
-
-    public Image getCurrentImage() {
-        String currentImageName;
-        if (getIllness() == 1) {
-            currentImageName = "illness";
-        } else if (isSleeping()) {
-            currentImageName = "sleeping";
-        } else if (getHappiness() == -2) {
-            currentImageName = "verysad";
-        } else if (getHappiness() == -1) {
-            currentImageName = "sad";
-        } else if (getHappiness() == 0) {
-            currentImageName = "normal";
-        } else if (getHappiness() == 1) {
-            currentImageName = "happy";
-        } else {
-            currentImageName = "veryhappy";
-        }
-        if (lastImage != null) {
-            if (currentImageName.equals(lastImageName) && getTextSize().equals(lastImageSize)) {
-                return lastImage;
-            }
-        }
-        lastImage = Images.readImage(currentImageName, getTextSize());
-        lastImageName = currentImageName;
-        lastImageSize = getTextSize();
-        return lastImage;
     }
 
     //</editor-fold>

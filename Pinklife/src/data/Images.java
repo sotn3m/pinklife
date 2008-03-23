@@ -13,9 +13,9 @@ import javax.microedition.lcdui.Image;
  */
 public class Images {
 
-    public static Image readImage(String str, String size) {
+    public static Image readImage(String str) {
         try {
-            return Image.createImage(Image.class.getResourceAsStream("/resources/" + str + "_" + size + ".png"));
+            return Image.createImage(Image.class.getResourceAsStream("/resources/" + str + ".png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

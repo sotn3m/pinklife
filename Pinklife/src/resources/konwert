@@ -1,4 +1,0 @@
-#!/bin/bash
-convert $1_big.png -resize 50 $1_medium.png
-convert $1_big.png -resize 30 $1_small.png
-

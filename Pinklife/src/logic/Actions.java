@@ -22,5 +22,7 @@ public interface Actions {
     int PLAY = 11;
     int SHOWER = 10;
     int TIDY = 9;
+    
+    int ACTIONS_COUNT = 12;
 
 }
