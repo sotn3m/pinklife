@@ -54,7 +54,7 @@ public class MainThread extends Thread implements Actions {
     public void performAction(int action) {
         actionToPerform = action;
         actionTimeCounter = 0;
-        setCurrentAnimationType();
+        _canvas.setAnimation(actionToPerform);
     }
 
     public int getCurrentAction() {
@@ -129,11 +129,7 @@ public class MainThread extends Thread implements Actions {
         if(actionToPerform!=NOTHING)
             actionTimeCounter++;
     }
-
-    private void setCurrentAnimationType() {
-        
-    }
-
+    
     private void timePassing() {
         _creature.timePassing();
     }

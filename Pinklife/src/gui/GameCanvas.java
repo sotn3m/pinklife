@@ -12,7 +12,6 @@ public class GameCanvas extends Canvas implements CommandListener {
     private static final int WHITE = 0x00FFFFFF;
     private static final int RED = 0x00FF0000;
     private static final int BLUE = 0x000000FF;
-    
     private CreatureBehaviourInterface creature;
     private Animation animation;
 
@@ -20,6 +19,7 @@ public class GameCanvas extends Canvas implements CommandListener {
      * constructor
      */
     public GameCanvas() {
+        animation = new Animation(getWidth(), getHeight());
         try {
             // Set up this canvas to listen to command events
             setCommandListener(this);
@@ -30,6 +30,7 @@ public class GameCanvas extends Canvas implements CommandListener {
 
     public void assignCreature(CreatureBehaviourInterface creature) {
         this.creature = creature;
+        this.animation.setCreature(creature);
     }
 
     /**
@@ -93,16 +94,10 @@ public class GameCanvas extends Canvas implements CommandListener {
     }
 
     private void drawCreature(Graphics g) {
-        Image image = creature.getCurrentImage();
-        int beginningPixelWidth = getWidth() - image.getWidth();
-        int beginningPixelHeight = getHeight() - image.getHeight();
-        beginningPixelWidth >>= 1;
-        beginningPixelHeight >>= 1;
-        g.drawImage(image, beginningPixelWidth, beginningPixelHeight, Graphics.TOP | Graphics.LEFT);
+        this.animation.drawFrame(g);
     }
 
-    private void setAnimation(Animation animation) {
-        this.animation = animation;
+    public void setAnimation(int action) {
+        this.animation.setAction(action);
     }
-
 }

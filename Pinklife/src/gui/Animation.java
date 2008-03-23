@@ -4,8 +4,9 @@
  */
 package gui;
 
-import logic.CreatureBean;
+import data.CreatureBehaviourInterface;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
 
 /**
  *
@@ -14,12 +15,13 @@ import javax.microedition.lcdui.Graphics;
 public class Animation {
 
     private int frameCount;
-    private CreatureBean creature;
+    private CreatureBehaviourInterface creature;
     private int iCurrentStep = 1;
+    
+    private int width;
+    private int height;
 
-    public Animation(int frameCount, CreatureBean creature) {
-        this.frameCount = frameCount;
-        this.creature = creature;
+    public Animation(int width, int height) {
     }
 
     /**
@@ -38,24 +40,33 @@ public class Animation {
         return false;
     }
 
+    void setAction(int action) {
+    }
+
+    void setCreature(CreatureBehaviourInterface creature) {
+        this.creature = creature;
+    }
+
     private void drawFrame(Graphics g,
             int iStep) {
-
+        
+//        Image image = creature.getCurrentImage();
+//        int beginningPixelWidth = getWidth() - image.getWidth();
+//        int beginningPixelHeight = getHeight() - image.getHeight();
+//        beginningPixelWidth >>= 1;
+//        beginningPixelHeight >>= 1;
+//        g.drawImage(image, beginningPixelWidth, beginningPixelHeight, Graphics.TOP | Graphics.LEFT);
     }
-
-    public int getFrameCount() {
-        return frameCount;
-    }
-
-    public void setFrameCount(int frameCount) {
-        this.frameCount = frameCount;
-    }
-
-    public CreatureBean getCreature() {
+    
+    public CreatureBehaviourInterface getCreature() {
         return creature;
     }
 
-    public void setCreature(CreatureBean creature) {
-        this.creature = creature;
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
