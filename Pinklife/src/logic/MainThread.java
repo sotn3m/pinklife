@@ -12,24 +12,12 @@ import data.CreatureBehaviourInterface;
  *
  * @author sotn3m <sotn3m at gmail dot com>
  */
-public class MainThread extends Thread {
+public class MainThread extends Thread implements Actions {
 
     private data.CreatureBehaviourInterface _creature;
     private gui.GameCanvas _canvas;
     // whether thread should run or be stopped
     private boolean _bContinue;
-    public static final int NOTHING = 0;
-    public static final int GIVE_MEDICINE = 1;
-    public static final int GIVE_ORANGE = 2;
-    public static final int GIVE_PINEAPPLE = 3;
-    public static final int GIVE_PEACH = 4;
-    public static final int GIVE_ICECREAM = 5;
-    public static final int GIVE_MILK = 6;
-    public static final int GIVE_ORANGEJUICE = 7;
-    public static final int GIVE_COCACOLA = 8;
-    public static final int TIDY = 9;
-    public static final int SHOWER = 10;
-    public static final int PLAY = 11;
     private int actionToPerform;
     private int actionTimeCounter;
 

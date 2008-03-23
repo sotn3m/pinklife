@@ -6,6 +6,7 @@ package gui;
 
 import logic.MainThread;
 import logic.CreatureBean;
+import logic.Actions;
 import data.CreatureBehaviourInterface;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
@@ -72,7 +73,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             getGameCanvas().assignCreature(creature);
 
             if (thread == null) {
-                thread = new logic.MainThread(creature, getGameCanvas());
+                thread = new MainThread(creature, getGameCanvas());
                 thread.start();
             } else {
                 thread.setCanvas(getGameCanvas());
@@ -507,19 +508,19 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfFoods().getString(getListOfFoods().getSelectedIndex());//GEN-BEGIN:|104-action|1|108-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Orange")) {//GEN-END:|104-action|1|108-preAction
-                thread.performAction(MainThread.GIVE_ORANGE);
+                thread.performAction(Actions.GIVE_ORANGE);
 //GEN-LINE:|104-action|2|108-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Pineapple")) {//GEN-LINE:|104-action|3|109-preAction
-                thread.performAction(MainThread.GIVE_PINEAPPLE);
+                thread.performAction(Actions.GIVE_PINEAPPLE);
 //GEN-LINE:|104-action|4|109-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Peach")) {//GEN-LINE:|104-action|5|110-preAction
-                thread.performAction(MainThread.GIVE_PEACH);
+                thread.performAction(Actions.GIVE_PEACH);
 //GEN-LINE:|104-action|6|110-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Ice cream")) {//GEN-LINE:|104-action|7|111-preAction
-                thread.performAction(MainThread.GIVE_ICECREAM);
+                thread.performAction(Actions.GIVE_ICECREAM);
 //GEN-LINE:|104-action|8|111-postAction
             // write post-action user code here
             }//GEN-BEGIN:|104-action|9|104-postAction
@@ -557,15 +558,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
         String __selectedString = getListOfDrinks().getString(getListOfDrinks().getSelectedIndex());//GEN-BEGIN:|116-action|1|119-preAction
         if (__selectedString != null) {
             if (__selectedString.equals("Milk")) {//GEN-END:|116-action|1|119-preAction
-                thread.performAction(MainThread.GIVE_MILK);
+                thread.performAction(Actions.GIVE_MILK);
 //GEN-LINE:|116-action|2|119-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Orange juice")) {//GEN-LINE:|116-action|3|120-preAction
-                thread.performAction(MainThread.GIVE_ORANGEJUICE);
+                thread.performAction(Actions.GIVE_ORANGEJUICE);
 //GEN-LINE:|116-action|4|120-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Coca cola")) {//GEN-LINE:|116-action|5|121-preAction
-                thread.performAction(MainThread.GIVE_COCACOLA);
+                thread.performAction(Actions.GIVE_COCACOLA);
 //GEN-LINE:|116-action|6|121-postAction
             // write post-action user code here
             }//GEN-BEGIN:|116-action|7|116-postAction
@@ -633,15 +634,15 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             // write post-action user code here
             } else if (__selectedString.equals("tidy room")) {//GEN-LINE:|141-action|5|149-preAction
                 // write pre-action user code here
-                thread.performAction(MainThread.TIDY);//GEN-LINE:|141-action|6|149-postAction
+                thread.performAction(Actions.TIDY);//GEN-LINE:|141-action|6|149-postAction
                 returnToGameScreen();
             } else if (__selectedString.equals("wash creature")) {//GEN-LINE:|141-action|7|187-preAction
                 // write pre-action user code here
-                thread.performAction(MainThread.SHOWER);//GEN-LINE:|141-action|8|187-postAction
+                thread.performAction(Actions.SHOWER);//GEN-LINE:|141-action|8|187-postAction
                 returnToGameScreen();
             } else if (__selectedString.equals("play")) {//GEN-LINE:|141-action|9|151-preAction
                 // write pre-action user code here
-                thread.performAction(MainThread.PLAY);//GEN-LINE:|141-action|10|151-postAction
+                thread.performAction(Actions.PLAY);//GEN-LINE:|141-action|10|151-postAction
                 returnToGameScreen();
             } else if (__selectedString.equals("go to sleep/wake up")) {//GEN-LINE:|141-action|11|181-preAction
                 // write pre-action user code here
@@ -653,7 +654,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
                 returnToGameScreen();
             } else if (__selectedString.equals("give medicine")) {//GEN-LINE:|141-action|15|216-preAction
                 // write pre-action user code here
-                thread.performAction(MainThread.GIVE_MEDICINE);//GEN-LINE:|141-action|16|216-postAction
+                thread.performAction(Actions.GIVE_MEDICINE);//GEN-LINE:|141-action|16|216-postAction
                 returnToGameScreen();
             }//GEN-BEGIN:|141-action|17|141-postAction
         }//GEN-END:|141-action|17|141-postAction
