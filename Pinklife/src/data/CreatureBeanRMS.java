@@ -12,7 +12,7 @@ import javax.microedition.rms.RecordStore;
  *
  * @author sotn3m <sotn3m at gmail dot com>
  */
-public class CreatureBeanRMS {
+public class CreatureBeanRMS extends RandomGenerator {
     private long timeDiff;
 
     protected final String storeName = "creatureData";
@@ -33,7 +33,6 @@ public class CreatureBeanRMS {
     protected int sleepingState; // 0 if awake, 1 if sleeping
     protected int lightState; // 0 turned off, 1 turned on
     
-    private Random random;
 
     //<editor-fold defaultstate="collapsed" desc="int/long to byte[] and vice versa">
     public static int unsignedByteToInt(byte b) {
@@ -273,18 +272,5 @@ public class CreatureBeanRMS {
 
     public long getTimeDiff() {
         return timeDiff;
-    }
-    //</editor-fold>
-    
-    // returns random number between <begin, end)
-    protected int getRandomNumber(int begin, int end) {
-        return getRandomGenerator().nextInt(end - begin) + begin;
-    }
-
-    protected Random getRandomGenerator() {
-        if (random == null) {
-            random = new Random();
-        }
-        return random;
     }
 }

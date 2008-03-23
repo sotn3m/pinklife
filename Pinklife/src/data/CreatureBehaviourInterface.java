@@ -57,6 +57,12 @@ public interface CreatureBehaviourInterface {
 
     String getTextWaterLevel();
     
+    int getHappiness();
+    
+    boolean isIll();
+    
+    boolean isDirty();
+    
     // sleep/light
     public void switchSleeping();
     public void switchLight();

@@ -37,7 +37,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         boolean state = super.load();
 
         long timePassedInSeconds = getTimeDiff() / 1000;
-        int timeDivision = 100;        
+        int timeDivision = 100;
 
         if (timePassedInSeconds / timeDivision > 300) {
             setWorstCases();
@@ -157,7 +157,7 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     private void setWorstCases() {
-        //TODO
+    //TODO
     }
 
     private void timePass() {
@@ -257,6 +257,14 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
             return "ill";
         }
         return "healthy";
+    }
+
+    public boolean isIll() {
+        return getIllness() == 1;
+    }
+
+    public boolean isDirty() {
+        return getDirtyLevel() > 100;
     }
 
     public String getTextMessLevel() {

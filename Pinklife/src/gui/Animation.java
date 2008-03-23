@@ -72,7 +72,43 @@ public class Animation implements Actions {
 
     //draw only the creature
     private void drawCreature(Graphics g) {
+        int happ = creature.getHappiness();
+        
+        // body
         drawImage(g, Images.readImage("body_" + creature.getTextSize()));
+        // brows              
+        if(happ==2 || happ==0)
+            drawImage(g, Images.readImage("brows_normal_" + creature.getTextSize()));
+        if(happ>0)
+            drawImage(g, Images.readImage("brows_happy_" + creature.getTextSize()));
+        if(happ<0)
+            drawImage(g, Images.readImage("brows_sad_" + creature.getTextSize()));
+        // lips
+        if(happ==0)
+            drawImage(g, Images.readImage("smile_normal_" + creature.getTextSize()));
+        if(happ>0)
+            drawImage(g, Images.readImage("smile_happy_" + creature.getTextSize()));
+        if(happ<0)
+            drawImage(g, Images.readImage("smile_sad_" + creature.getTextSize()));
+        // legs        
+        if(data.RandomGenerator.getRandomNumber(1, 80)==7)
+            drawImage(g, Images.readImage("leg_impatience_" + creature.getTextSize()));
+        else
+            drawImage(g, Images.readImage("leg_" + creature.getTextSize()));
+        // eyes
+        if(data.RandomGenerator.getRandomNumber(1, 100)==7)
+            drawImage(g, Images.readImage("eyes_wink_" + creature.getTextSize()));
+        else
+            drawImage(g, Images.readImage("eyes_" + creature.getTextSize()));
+        // health
+        if(creature.isIll())
+            drawImage(g, Images.readImage("illness_" + creature.getTextSize()));
+        // dirty
+        if(creature.isDirty())
+            drawImage(g, Images.readImage("dirt_" + creature.getTextSize()));        
+        // tear
+        if(happ==-2)
+            drawImage(g, Images.readImage("tear_" + creature.getTextSize()));
 
     }
 
