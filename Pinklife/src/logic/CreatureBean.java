@@ -1,5 +1,6 @@
-package data;
+package logic;
 
+import data.*;
 import javax.microedition.lcdui.Image;
 
 /**

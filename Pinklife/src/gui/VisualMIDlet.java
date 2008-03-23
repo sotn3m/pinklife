@@ -4,7 +4,8 @@
  */
 package gui;
 
-import data.CreatureBean;
+import logic.MainThread;
+import logic.CreatureBean;
 import data.CreatureBehaviourInterface;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
@@ -71,7 +72,7 @@ public class VisualMIDlet extends MIDlet implements CommandListener {
             getGameCanvas().assignCreature(creature);
 
             if (thread == null) {
-                thread = new MainThread(creature, getGameCanvas());
+                thread = new logic.MainThread(creature, getGameCanvas());
                 thread.start();
             } else {
                 thread.setCanvas(getGameCanvas());

@@ -4,7 +4,7 @@
  */
 package gui;
 
-import data.CreatureBean;
+import logic.CreatureBean;
 import javax.microedition.lcdui.Graphics;
 
 /**

@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package logic;
 
+import gui.*;
 import data.CreatureBehaviourInterface;
 
 /** 
@@ -32,7 +33,7 @@ public class MainThread extends Thread {
     private int actionToPerform;
     private int actionTimeCounter;
 
-    MainThread(CreatureBehaviourInterface creature, GameCanvas canvas) {
+    public MainThread(CreatureBehaviourInterface creature, GameCanvas canvas) {
         this._creature = creature;
         this._canvas = canvas;
         _bContinue = true;
