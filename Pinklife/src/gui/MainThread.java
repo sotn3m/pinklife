@@ -16,25 +16,21 @@ public class MainThread extends Thread {
     private data.CreatureBehaviourInterface _creature;
     private gui.GameCanvas _canvas;
     // whether thread should run or be stopped
-    private boolean _bContinue;    
-    
+    private boolean _bContinue;
     public static final int NOTHING = 0;
     public static final int GIVE_MEDICINE = 1;
-    
     public static final int GIVE_ORANGE = 2;
     public static final int GIVE_PINEAPPLE = 3;
     public static final int GIVE_PEACH = 4;
     public static final int GIVE_ICECREAM = 5;
-    
     public static final int GIVE_MILK = 6;
-    public static final int GIVE_ORANGEJUICE=7;
-    public static final int GIVE_COCACOLA=8;    
-        
+    public static final int GIVE_ORANGEJUICE = 7;
+    public static final int GIVE_COCACOLA = 8;
     public static final int TIDY = 9;
     public static final int SHOWER = 10;
-    public static final int PLAY = 11;    
-    
+    public static final int PLAY = 11;
     private int actionToPerform;
+    private int actionTimeCounter;
 
     MainThread(CreatureBehaviourInterface creature, GameCanvas canvas) {
         this._creature = creature;
@@ -68,12 +64,14 @@ public class MainThread extends Thread {
 
     public void performAction(int action) {
         actionToPerform = action;
+        actionTimeCounter = 0;
+        setCurrentAnimationType();
     }
-    
+
     public int getCurrentAction() {
         return actionToPerform;
     }
-    
+
     public void run() {
         int iCounter = 0;
 
@@ -81,31 +79,13 @@ public class MainThread extends Thread {
             if (iCounter >= 80) {
                 timePassing();
                 _creature.debug();
-                
+
                 iCounter = 0;
-                
-                switch(actionToPerform)
-                {
-                    case GIVE_MEDICINE: { _creature.cure(); }
-                    
-                    case GIVE_ORANGE: { _creature.eatOrange(); }
-                    case GIVE_PEACH: { _creature.eatPeach(); }
-                    case GIVE_PINEAPPLE: { _creature.eatPineapple(); }
-                    case GIVE_ICECREAM: { _creature.eatIceCream(); }
-                    
-                    case GIVE_MILK: { _creature.drinkMilk(); }
-                    case GIVE_COCACOLA: { _creature.drinkCocaCola(); }
-                    case GIVE_ORANGEJUICE: { _creature.drinkOrangeJuice(); }
-                    
-                    case PLAY: { _creature.play(); }
-                    case SHOWER: { _creature.washCreature(); }
-                    case TIDY: { _creature.tidy(); }
-                    
-                }                
-                actionToPerform=NOTHING;
-                
             }
             iCounter++;
+
+            // optionally modify current action
+            finalizeAction();
 
             //redraw the scene
             _canvas.repaint();
@@ -116,6 +96,53 @@ public class MainThread extends Thread {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void finalizeAction() {
+        if (actionTimeCounter == 100 && actionToPerform!=NOTHING) {
+            switch (actionToPerform) {
+                case GIVE_MEDICINE: {
+                    _creature.cure();
+                }
+                case GIVE_ORANGE: {
+                    _creature.eatOrange();
+                }
+                case GIVE_PEACH: {
+                    _creature.eatPeach();
+                }
+                case GIVE_PINEAPPLE: {
+                    _creature.eatPineapple();
+                }
+                case GIVE_ICECREAM: {
+                    _creature.eatIceCream();
+                }
+                case GIVE_MILK: {
+                    _creature.drinkMilk();
+                }
+                case GIVE_COCACOLA: {
+                    _creature.drinkCocaCola();
+                }
+                case GIVE_ORANGEJUICE: {
+                    _creature.drinkOrangeJuice();
+                }
+                case PLAY: {
+                    _creature.play();
+                }
+                case SHOWER: {
+                    _creature.washCreature();
+                }
+                case TIDY: {
+                    _creature.tidy();
+                }
+            }
+            performAction(NOTHING);
+        }
+        if(actionToPerform!=NOTHING)
+            actionTimeCounter++;
+    }
+
+    private void setCurrentAnimationType() {
+        
     }
 
     private void timePassing() {
