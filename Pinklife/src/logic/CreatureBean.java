@@ -121,11 +121,17 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     public void tidy() {
-        messLevel = 0;
+        messLevel -= 200;
+        if (messLevel < -100) {
+            messLevel = -100;
+        }
     }
 
     public void washCreature() {
-        dirtyLevel = 0;
+        dirtyLevel -= 200;
+        if (dirtyLevel < -100) {
+            dirtyLevel = -100;
+        }
     }
 
     public void play() {
@@ -276,6 +282,10 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         return "order";
     }
 
+    public boolean isMess() {
+        return getMessLevel() > 500 ? true : false;
+    }
+
     public String getTextDirtyLevel() {
         if (getDirtyLevel() > 100) {
             return "dirty";
@@ -322,6 +332,10 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         if (getWaterLevel() > 600) {
             setWaterLevel(600);
         }
+        if (getPlayLevel() > 600) {
+            setPlayLevel(600);
+        }
+
     }
 
     private void calculateHappiness() {

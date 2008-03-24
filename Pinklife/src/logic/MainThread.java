@@ -88,7 +88,7 @@ public class MainThread extends Thread implements Actions {
     }
 
     private void finalizeAction() {
-        if (actionTimeCounter == 100 && actionToPerform!=NOTHING) {
+        if (actionTimeCounter == 50 && actionToPerform!=NOTHING) {
             switch (actionToPerform) {
                 case GIVE_MEDICINE: {
                     _creature.cure();

@@ -63,6 +63,8 @@ public interface CreatureBehaviourInterface {
     
     boolean isDirty();
     
+    boolean isMess();
+    
     // sleep/light
     public void switchSleeping();
     public void switchLight();
