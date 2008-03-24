@@ -46,6 +46,7 @@ public class Animation implements Actions {
     }
 
     void setAction(int action) {
+        frameDuration = 0;
         if (action == GIVE_MILK || action == GIVE_COCACOLA || action == GIVE_ORANGEJUICE) {
             this.action = DRINK;
         } else {
@@ -118,7 +119,7 @@ public class Animation implements Actions {
         } else if (legTimeCounter > 0) {
             drawImage(g, Images.readImage("leg_impatience_" + creature.getTextSize()));
             legTimeCounter--;
-        } else if (data.RandomGenerator.getRandomNumber(1, 60) == 7) {
+        } else if (data.RandomGenerator.getRandomNumber(1, 60) == 7 && !creature.isIll() && !creature.isDirty()) {
             drawImage(g, Images.readImage("leg_impatience_" + creature.getTextSize()));
             legTimeCounter = 7;
         } else {
