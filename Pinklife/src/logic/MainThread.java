@@ -92,36 +92,47 @@ public class MainThread extends Thread implements Actions {
             switch (actionToPerform) {
                 case GIVE_MEDICINE: {
                     _creature.cure();
+                    break;
                 }
                 case GIVE_ORANGE: {
                     _creature.eatOrange();
+                    break;
                 }
                 case GIVE_PEACH: {
                     _creature.eatPeach();
+                    break;
                 }
                 case GIVE_PINEAPPLE: {
                     _creature.eatPineapple();
+                    break;
                 }
                 case GIVE_ICECREAM: {
                     _creature.eatIceCream();
+                    break;
                 }
                 case GIVE_MILK: {
                     _creature.drinkMilk();
+                    break;
                 }
                 case GIVE_COCACOLA: {
                     _creature.drinkCocaCola();
+                    break;
                 }
                 case GIVE_ORANGEJUICE: {
                     _creature.drinkOrangeJuice();
+                    break;
                 }
                 case PLAY: {
                     _creature.play();
+                    break;
                 }
                 case SHOWER: {
                     _creature.washCreature();
+                    break;
                 }
                 case TIDY: {
                     _creature.tidy();
+                    break;
                 }
             }
             performAction(NOTHING);
