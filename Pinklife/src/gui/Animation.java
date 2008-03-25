@@ -17,8 +17,7 @@ import logic.Actions;
 public class Animation implements Actions {
 
     // general animation for drinks
-    private final int DRINK = ACTIONS_COUNT + 1;
-    private int frameCount;
+    private final int DRINK = ACTIONS_COUNT + 1;    
     private CreatureBehaviourInterface creature;
     private int iCurrentStep = 0;
     private String[][] animationfileNames;
@@ -65,10 +64,10 @@ public class Animation implements Actions {
 
         drawImage(g, Images.readImage(animationfileNames[action][iCurrentStep]));
 
-        if (frameDuration == 4) {
+        if (frameDuration == 2) {
             iCurrentStep++;
             frameDuration = 0;
-        } else {
+        } else {            
             frameDuration++;
         }
 
