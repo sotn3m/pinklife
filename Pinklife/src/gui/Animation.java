@@ -16,8 +16,7 @@ import logic.Actions;
  */
 public class Animation implements Actions {
 
-    // general animation for drinks
-    private final int DRINK = ACTIONS_COUNT + 1;    
+    // general animation for drinks    
     private CreatureBehaviourInterface creature;
     private int iCurrentStep = 0;
     private String[][] animationfileNames;
@@ -32,10 +31,12 @@ public class Animation implements Actions {
         this.width = width;
         this.height = height;
 
-        animationfileNames = new String[ACTIONS_COUNT + 2][];
+        animationfileNames = new String[ACTIONS_COUNT + 1][];
         animationfileNames[SHOWER] = new String[]{"shower_1", "shower_2"};
         animationfileNames[PLAY] = new String[]{"ball_1", "ball_2", "ball_3", "ball_4", "ball_5", "ball_4", "ball_3", "ball_2"};
-        animationfileNames[DRINK] = new String[]{"drink_1", "drink_2", "drink_3", "drink_4"};
+        animationfileNames[GIVE_MILK] = new String[]{"drink_1", "drink_2", "drink_3", "drink_4"};
+        animationfileNames[GIVE_COCACOLA] = new String[]{"cola_1", "cola_2", "cola_3", "drink_4"};
+        animationfileNames[GIVE_ORANGEJUICE] = new String[]{"orangejuice_1", "orangejuice_2", "orangejuice_3", "drink_4"};
         animationfileNames[GIVE_ORANGE] = new String[]{"orange"};
         animationfileNames[GIVE_PEACH] = new String[]{"nectarine"};
         animationfileNames[GIVE_PINEAPPLE] = new String[]{"ananas"};
@@ -46,11 +47,7 @@ public class Animation implements Actions {
 
     void setAction(int action) {
         frameDuration = 0;
-        if (action == GIVE_MILK || action == GIVE_COCACOLA || action == GIVE_ORANGEJUICE) {
-            this.action = DRINK;
-        } else {
-            this.action = action;
-        }
+        this.action = action;        
     }
 
     void setCreature(CreatureBehaviourInterface creature) {
