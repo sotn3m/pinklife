@@ -37,9 +37,9 @@ public class Animation implements Actions {
         animationfileNames[GIVE_MILK] = new String[]{"drink_1", "drink_2", "drink_3", "drink_4"};
         animationfileNames[GIVE_COCACOLA] = new String[]{"cola_1", "cola_2", "cola_3", "drink_4"};
         animationfileNames[GIVE_ORANGEJUICE] = new String[]{"orangejuice_1", "orangejuice_2", "orangejuice_3", "drink_4"};
-        animationfileNames[GIVE_ORANGE] = new String[]{"orange"};
-        animationfileNames[GIVE_PEACH] = new String[]{"nectarine"};
-        animationfileNames[GIVE_PINEAPPLE] = new String[]{"ananas"};
+        animationfileNames[GIVE_ORANGE] = new String[]{"orange_1", "orange_2", "orange_3", "orange_4", "blank"};
+        animationfileNames[GIVE_PEACH] = new String[]{"nectarine","nectarine_2","nectarine_3","blank"};
+        animationfileNames[GIVE_PINEAPPLE] = new String[]{"ananas", "ananas_2", "blank"};
         animationfileNames[GIVE_ICECREAM] = new String[]{"icecream"};
         animationfileNames[GIVE_MEDICINE] = new String[]{"syringe_1", "syringe_2", "syringe_3"};
         animationfileNames[TIDY] = new String[]{"broom_1", "broom_2", "broom_3", "broom_4", "broom_3", "broom_2"};
