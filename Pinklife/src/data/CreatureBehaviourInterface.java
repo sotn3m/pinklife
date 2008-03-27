@@ -5,8 +5,6 @@
 
 package data;
 
-import javax.microedition.lcdui.Image;
-
 /**
  *
  * @author sotn3m <sotn3m at gmail dot com>

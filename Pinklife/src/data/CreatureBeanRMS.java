@@ -5,7 +5,6 @@
 
 package data;
 
-import java.util.Random;
 import javax.microedition.rms.RecordStore;
 
 /**
