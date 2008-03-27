@@ -38,7 +38,7 @@ public class Animation implements Actions {
         animationfileNames[GIVE_COCACOLA] = new String[]{"cola_1", "cola_2", "cola_3", "drink_4"};
         animationfileNames[GIVE_ORANGEJUICE] = new String[]{"orangejuice_1", "orangejuice_2", "orangejuice_3", "drink_4"};
         animationfileNames[GIVE_ORANGE] = new String[]{"orange_1", "orange_2", "orange_3", "orange_4", "blank"};
-        animationfileNames[GIVE_PEACH] = new String[]{"nectarine","nectarine_2","nectarine_3","blank"};
+        animationfileNames[GIVE_PEACH] = new String[]{"nectarine", "nectarine_2", "nectarine_3", "blank"};
         animationfileNames[GIVE_PINEAPPLE] = new String[]{"ananas", "ananas_2", "blank"};
         animationfileNames[GIVE_ICECREAM] = new String[]{"icecream"};
         animationfileNames[GIVE_MEDICINE] = new String[]{"syringe_1", "syringe_2", "syringe_3"};
@@ -47,7 +47,8 @@ public class Animation implements Actions {
 
     void setAction(int action) {
         frameDuration = 0;
-        this.action = action;        
+        iCurrentStep = 0;
+        this.action = action;
     }
 
     void setCreature(CreatureBehaviourInterface creature) {
@@ -64,7 +65,7 @@ public class Animation implements Actions {
         if (frameDuration == 2) {
             iCurrentStep++;
             frameDuration = 0;
-        } else {            
+        } else {
             frameDuration++;
         }
 
