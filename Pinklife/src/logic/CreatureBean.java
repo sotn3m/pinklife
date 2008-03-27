@@ -163,7 +163,19 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     private void setWorstCases() {
-    //TODO
+        foodLevel = -200;
+        waterLevel = -200;
+
+        dirtyLevel = 600;
+        messLevel = 600;
+
+        if(isSleeping())
+            tireLevel = 400;
+        else
+            tireLevel = -200;
+        
+        changeIllnessAtRandom1toN(200);
+        limitValues();
     }
 
     private void timePass() {
@@ -329,13 +341,29 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
         if (getFoodLevel() > 600) {
             setFoodLevel(600);
         }
+        if (getFoodLevel() < -200) {
+            setFoodLevel(-200);
+        }
+        
+        
         if (getWaterLevel() > 600) {
             setWaterLevel(600);
         }
+        if (getWaterLevel() < -200) {
+            setWaterLevel(-200);
+        }
+        
         if (getPlayLevel() > 600) {
             setPlayLevel(600);
         }
 
+        
+        if (getTireLevel() > 400) {
+            setTireLevel(400);
+        }
+        if (getTireLevel() < -200) {
+            setTireLevel(-200);
+        }
     }
 
     private void calculateHappiness() {
