@@ -162,16 +162,16 @@ public class CreatureBean extends CreatureBeanRMS implements CreatureBehaviourIn
     }
 
     private void setWorstCases() {
-        foodLevel = -200;
-        waterLevel = -200;
+        foodLevel = -100;
+        waterLevel = -100;
 
-        dirtyLevel = 600;
-        messLevel = 600;
+        dirtyLevel = 300;
+        messLevel = 300;
 
         if(isSleeping())
             tireLevel = 400;
         else
-            tireLevel = -200;
+            tireLevel = -100;
         
         changeIllnessAtRandom1toN(200);
         limitValues();

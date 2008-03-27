@@ -88,59 +88,70 @@ public class MainThread extends Thread implements Actions {
     }
 
     private void finalizeAction() {
-        if (actionTimeCounter == 50 && actionToPerform!=NOTHING) {
-            switch (actionToPerform) {
-                case GIVE_MEDICINE: {
-                    _creature.cure();
-                    break;
+        if (actionToPerform != NOTHING) {
+            boolean bDifferentFromFood = actionToPerform != GIVE_ORANGE && actionToPerform != GIVE_PINEAPPLE && actionToPerform != GIVE_ICECREAM && actionToPerform != GIVE_PEACH;
+            if (bDifferentFromFood) {
+                if (actionTimeCounter == 50) {
+                    performAction();
                 }
-                case GIVE_ORANGE: {
-                    _creature.eatOrange();
-                    break;
-                }
-                case GIVE_PEACH: {
-                    _creature.eatPeach();
-                    break;
-                }
-                case GIVE_PINEAPPLE: {
-                    _creature.eatPineapple();
-                    break;
-                }
-                case GIVE_ICECREAM: {
-                    _creature.eatIceCream();
-                    break;
-                }
-                case GIVE_MILK: {
-                    _creature.drinkMilk();
-                    break;
-                }
-                case GIVE_COCACOLA: {
-                    _creature.drinkCocaCola();
-                    break;
-                }
-                case GIVE_ORANGEJUICE: {
-                    _creature.drinkOrangeJuice();
-                    break;
-                }
-                case PLAY: {
-                    _creature.play();
-                    break;
-                }
-                case SHOWER: {
-                    _creature.washCreature();
-                    break;
-                }
-                case TIDY: {
-                    _creature.tidy();
-                    break;
-                }
+            } else if (actionTimeCounter == 30) {
+                performAction();
             }
-            performAction(NOTHING);
-        }
-        if(actionToPerform!=NOTHING)
             actionTimeCounter++;
+        }
     }
-    
+
+    // do the action after the period end and switch action
+    private void performAction() {
+        switch (actionToPerform) {
+            case GIVE_MEDICINE: {
+                _creature.cure();
+                break;
+            }
+            case GIVE_ORANGE: {
+                _creature.eatOrange();
+                break;
+            }
+            case GIVE_PEACH: {
+                _creature.eatPeach();
+                break;
+            }
+            case GIVE_PINEAPPLE: {
+                _creature.eatPineapple();
+                break;
+            }
+            case GIVE_ICECREAM: {
+                _creature.eatIceCream();
+                break;
+            }
+            case GIVE_MILK: {
+                _creature.drinkMilk();
+                break;
+            }
+            case GIVE_COCACOLA: {
+                _creature.drinkCocaCola();
+                break;
+            }
+            case GIVE_ORANGEJUICE: {
+                _creature.drinkOrangeJuice();
+                break;
+            }
+            case PLAY: {
+                _creature.play();
+                break;
+            }
+            case SHOWER: {
+                _creature.washCreature();
+                break;
+            }
+            case TIDY: {
+                _creature.tidy();
+                break;
+            }
+        }
+        performAction(NOTHING);
+    }
+
     private void timePassing() {
         _creature.timePassing();
     }
